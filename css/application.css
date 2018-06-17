@@ -1,0 +1,89 @@
+body {
+  align-items: center;
+  margin: 0 auto;
+}
+
+header {
+  background-color: black;
+  width: 550px;
+  padding: 0px 25px;
+  /* border: 1px 1px 0px 1px; */
+  border: 1px solid grey;
+  position: relative;
+  display: inline-flex;
+  justify-content: space-around;
+}
+
+header h1 {
+  font-size: 38px;
+  margin: 15px 0px;
+}
+
+#red {
+  color: silver;
+  -webkit-text-fill-color: red;
+  -webkit-text-stroke-width: 1px;
+  -webkit-text-stroke-color: silver;
+}
+
+#orange {
+  color: silver;
+  -webkit-text-fill-color: orange;
+  -webkit-text-stroke-width: 1px;
+  -webkit-text-stroke-color: silver;
+}
+
+#yellow {
+  color: silver;
+  -webkit-text-fill-color: yellow;
+  -webkit-text-stroke-width: 1px;
+  -webkit-text-stroke-color: silver;
+}
+
+#green {
+  color: silver;
+  -webkit-text-fill-color: green;
+  -webkit-text-stroke-width: 1px;
+  -webkit-text-stroke-color: silver;
+}
+
+#blue {
+  color: silver;
+  -webkit-text-fill-color: blue;
+  -webkit-text-stroke-width: 1px;
+  -webkit-text-stroke-color: silver;
+}
+
+#indigo {
+  color: silver;
+  -webkit-text-fill-color: indigo;
+  -webkit-text-stroke-width: 1px;
+  -webkit-text-stroke-color: silver;
+}
+
+#violet {
+  color: silver;
+  -webkit-text-fill-color: violet;
+  -webkit-text-stroke-width: 1px;
+  -webkit-text-stroke-color: silver;
+}
+
+#darkblue {
+  color: silver;
+  -webkit-text-fill-color: darkblue;
+  -webkit-text-stroke-width: 1px;
+  -webkit-text-stroke-color: silver;
+}
+
+.nav-list span a {
+  position: relative;
+  vertical-align: middle;
+  top: 25px;
+  padding: 30px 0px;
+}
+
+#canvas {
+  width: 600px;
+  height: 600px;
+  border: 1px solid grey;
+}
