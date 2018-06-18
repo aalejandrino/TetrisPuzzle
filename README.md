@@ -1,5 +1,7 @@
 ## TetrisPuzzle
 
+[Live Demo](https://adobofrenzy.github.io/TetrisPuzzle/)
+
 ### Background and Overview
 TetrisPuzzle is a fun and relaxing puzzle game inspired by our legendary, childhood game - Tetris. This is ideal for all ages!
 
