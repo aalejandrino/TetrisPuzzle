@@ -52,18 +52,17 @@ The following will also be involved in the project:
 **Over the weekend**
 - [x] Play some javascript games and come up with an idea of what to do for the project
 - [ ] Do some research on how to start a javascript game project
-- [ ] Set up a repo in Github and begin creating some files (create a new project folder and set up `webpack.config.js`, `package.json`, and the basic `entry file`)
-- [ ] Finish Project proposal for jabberwocky
+- [x] Set up a repo in Github and begin creating some files (create a new project folder and set up `webpack.config.js`, `package.json`, and the basic `entry file`)
+- [x] Finish Project proposal for jabberwocky
 
-**Day 1:** Setup necessary files and get webpack up and running. Continue working on `webpack.config.js`, `package.json`,  and `entry file` if necessary.
+**Day 1:** Setup necessary files and get webpack up and running. Continue working on `webpack.config.js`, `package.json`,  and `entry file` if necessary - finish today if possible. Continue doing research/ask around on how to begin and setup the project.
 
 **Day 2:** Create additional files necessary for the project. Such as `board.js`, `pieces.js`, `game.js`. Think back during our days when we used Ruby to create games. How each file and classes organized the game.
 
-**Day 3:**
+**Day 3:** Work on rendering the game on the canvas. Style with css.
 
-**Day 4:**
+**Day 4:** Lastly, work on user controls. They should be able to click on a piece to pick it up and click again to drop it on the board. Work on any final details.
 
-**Day 5:**
 
 
 ### Bonus MVPS

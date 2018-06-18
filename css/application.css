@@ -7,11 +7,10 @@ header {
   background-color: black;
   width: 550px;
   padding: 0px 25px;
-  /* border: 1px 1px 0px 1px; */
   border: 1px solid grey;
   position: relative;
   display: inline-flex;
-  justify-content: space-around;
+  justify-content: space-between;
 }
 
 header h1 {
@@ -75,11 +74,31 @@ header h1 {
   -webkit-text-stroke-color: silver;
 }
 
-.nav-list span a {
+.nav-list div {
   position: relative;
   vertical-align: middle;
-  top: 25px;
-  padding: 30px 0px;
+  display: inline-flex;
+  margin: 10px;
+}
+
+#github {
+  background-image: url('https://s6.postimg.cc/kkspu08a9/github_logo.png');
+  background-size: 25px 25px;
+  position: relative;
+  background-color: white;
+  width: 25px;
+  height: 25px;
+  border-radius: 10px;
+}
+
+#linkedin {
+  background-image: url('https://www.northeastern.edu/careers/wp-content/uploads/2012/10/CBpFkPaz.png');
+  background-size: 25px 25px;
+  position: relative;
+  background-color: white;
+  width: 25px;
+  height: 25px;
+  border-radius: 3px;
 }
 
 #canvas {
