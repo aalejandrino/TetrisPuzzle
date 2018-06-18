@@ -8,39 +8,30 @@ document.addEventListener("DOMContentLoaded", () => {
   canvasEl.height = 700;
 
   const ctx = canvasEl.getContext("2d");
+
+  ctx.fillStyle = "lightgrey";
+  for (let i = 150; i < 600; i=i+45) {
+    for (let j = 75; j < 525; j=j+45) {
+      ctx.fillRect(i, j, 45, 45);
+      ctx.rect(i, j, 45, 45);
+    }
+  }
+
   ctx.fillStyle = "blue";
+  ctx.fillRect(100, 600, 45, 45);
+  ctx.fillRect(100, 555, 45, 45);
+  ctx.fillRect(145, 555, 45, 45);
+  ctx.fillRect(190, 555, 45, 45);
+  ctx.rect(100, 600, 45, 45);
+  ctx.rect(100, 555, 45, 45);
+  ctx.rect(145, 555, 45, 45);
+  ctx.rect(190, 555, 45, 45);
 
-  ctx.fillRect(100, 126, 25, 25);
-  ctx.fillRect(100, 100, 25, 25);
-  ctx.fillRect(126, 100, 25, 25);
-  ctx.fillRect(152, 100, 25, 25);
 
-  ctx.fillStyle = "pink";
-  ctx.fillRect(200, 100, 25, 25);
-  ctx.fillRect(226, 100, 25, 25);
-  ctx.fillRect(252, 100, 25, 25);
-  ctx.fillRect(278, 100, 25, 25);
-
-  ctx.fillStyle = "green";
-  ctx.fillRect(100, 200, 25, 25);
-  ctx.fillRect(126, 200, 25, 25);
-  ctx.fillRect(100, 226, 25, 25);
-  ctx.fillRect(126, 226, 25, 25);
-
-  ctx.rect(100, 126, 25, 25);
-  ctx.rect(100, 100, 25, 25);
-  ctx.rect(126, 100, 25, 25);
-  ctx.rect(152, 100, 25, 25);
-  ctx.rect(200, 100, 25, 25);
-  ctx.rect(226, 100, 25, 25);
-  ctx.rect(252, 100, 25, 25);
-  ctx.rect(278, 100, 25, 25);
-  ctx.rect(100, 200, 25, 25);
-  ctx.rect(126, 200, 25, 25);
-  ctx.rect(100, 226, 25, 25);
-  ctx.rect(126, 226, 25, 25);
   ctx.strokeStyle="#000000";
   ctx.stroke();
+
+
 
 
 });
