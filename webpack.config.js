@@ -2,8 +2,7 @@ module.exports = {
   context: __dirname,
   entry: "./javascript/main.js",
   output: {
-    path: "./",
-    filename: "bundle.js"
+    filename: "./javascript/bundle.js"
   },
   resolve: {
     extensions: ["*", ".js", ".jsx"]
