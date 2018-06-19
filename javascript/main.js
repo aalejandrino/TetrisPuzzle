@@ -24,18 +24,18 @@ var longvert = new LongVert();
 var test = new Three4();
 //
 
-board.fillTiles([5,3], one);
-board.fillTiles([1,0], square);
-board.fillTiles([1,2], square);
-board.fillTiles([1,4], square);
-board.fillTiles([1,6], square);
-board.fillTiles([4,0], square);
-board.fillTiles([5,5], test);
-board.fillTiles([6,0], longhoriz);
-board.fillTiles([6,1], longhoriz);
-board.fillTiles([0,0], longvert);
-board.fillTiles([3,0], longvert);
-board.fillTiles([0,4], longvert);
+// board.placePiece([5,3], one);
+// board.placePiece([1,0], square);
+// board.placePiece([1,2], square);
+// board.placePiece([1,4], square);
+// board.placePiece([1,6], square);
+// board.placePiece([4,0], square);
+// board.placePiece([5,5], test);
+// board.placePiece([6,0], longhoriz);
+// board.placePiece([6,1], longhoriz);
+// board.placePiece([0,0], longvert);
+// board.placePiece([3,0], longvert);
+// board.placePiece([0,4], longvert);
 
 // board.clearColumns();
 // board.clearRows();
@@ -75,37 +75,72 @@ document.addEventListener("DOMContentLoaded", () => {
         ctx.rect(((i*45) + 150), (j*45) + 75, 45, 45);
       }
     }
+    ctx.strokeStyle="#000000";
+    ctx.stroke();
 
-    ctx.fillStyle = "blue";
+    // ctx.fillStyle = "blue";
     for (let n = 0; n < 4; n++) {
       let current_piece = game.pieces[n];
 
-      for (let i = 0; i < current_piece.tiles.length; i++) {
-        for (let j = 0; j < current_piece.tiles[0].length; j++) {
+      if (current_piece === null) {
+        continue;
+      } else {
 
-          if (current_piece.tiles[i][j] === 0) {
-            continue;
-          } else {
-            ctx.fillStyle = current_piece.tiles[i][j].color;
-            ctx.fillRect((i*45) + 40 + (n*187.5), (j*45) + 555, 45, 45)
-            ctx.rect((i*45) + 40 + (n*187.5), (j*45) + 555, 45, 45)
+        for (let i = 0; i < current_piece.tiles.length; i++) {
+          for (let j = 0; j < current_piece.tiles[0].length; j++) {
+
+            if (current_piece.tiles[i][j] === 0) {
+              continue;
+            } else {
+              ctx.fillStyle = current_piece.tiles[i][j].color;
+              ctx.fillRect((i*45) + 40 + (n*187.5), (j*45) + 555, 45, 45)
+              // ctx.rect((i*45) + 40 + (n*187.5), (j*45) + 555, 45, 45) //rendering error?
+            };
           }
-
         }
       }
-
     }
-
-    ctx.strokeStyle="#000000";
-    ctx.stroke();
   }
 
-  setInterval( () => render(), 300);
+  setInterval( () => render(), 500);
 
 
   canvasEl.addEventListener('click', (e) => {
     console.log(e.pageX + ',' + e.pageY);
+    // console.log(e);
 
+// select pieces ===============================================================
+    if (e.pageY > 650 && e.pageY < 750) {
+      if (e.pageX > 310 && e.pageX < 450) {
+        game.pieceAction(0);
+        console.log(game.pieces);
+      } else if (e.pageX > 500 && e.pageX < 640) {
+        game.pieceAction(1);
+        console.log(game.pieces);
+      } else if (e.pageX > 685 && e.pageX < 825) {
+        game.pieceAction(2);
+        console.log(game.pieces);
+      } else if (e.pageX > 875 && e.pageX < 1015) {
+        game.pieceAction(3);
+        console.log(game.pieces);
+      }
+    }
+// =============================================================================
+
+// place pieces on board
+  if (e.pageX > 425 && e.pageX < 875 && e.pageY > 175 && e.pageY < 625) {
+    // console.log("you clicked on the board!")
+
+    if (game.selectedPiece) {
+      let x = Math.floor((e.pageX - 425)/45);
+      let y = Math.floor((e.pageY - 175)/45);
+      game.placePiece([x,y]);
+      console.log("you placed a piece!");
+    } else {
+      console.log("please select a piece!");
+    }
+
+  }
 
   }, false);
 
