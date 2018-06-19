@@ -233,6 +233,11 @@ class Game {
 
   }
 
+  clearTiles() {
+    this.score += this.board.clearRows();
+    this.score += this.board.clearColumns();
+  }
+
 }
 
 /* harmony default export */ __webpack_exports__["default"] = (Game);
@@ -293,7 +298,7 @@ board.fillTiles([3,0], longvert);
 board.fillTiles([0,4], longvert);
 
 // board.clearColumns();
-board.clearRows();
+// board.clearRows();
 
 game.receivePieces();
 
@@ -302,40 +307,51 @@ document.addEventListener("DOMContentLoaded", () => {
   console.log("Hey there and welcome to TetrisPuzzle");
   window.game = game;
 
-  const canvasEl = document.getElementById("canvas");
+  var canvasEl = document.getElementById("canvas");
   canvasEl.width = 750;
   canvasEl.height = 700;
 
+  const render = () => {
+    var ctx = canvasEl.getContext("2d");
 
-  const ctx = canvasEl.getContext("2d");
-  for (let i = 0; i < 10; i++) {
-    for (let j = 0; j < 10; j++) {
+    ctx.fillStyle = "#696969";
+    ctx.fillRect(0, 0, canvasEl.width, canvasEl.height);
 
-      if (board.grid[i][j] === 0) {
-        ctx.fillStyle = "white";
-      } else {
-        ctx.fillStyle = board.grid[i][j].color;
+    ctx.fillStyle = "black";
+    ctx.font = "42px Comic San";
+    ctx.fillText(`Score: ${game.score}`, 250, 50);
+
+    for (let i = 0; i < 10; i++) {
+      for (let j = 0; j < 10; j++) {
+
+        if (board.grid[i][j] === 0) {
+          ctx.fillStyle = "white";
+        } else {
+          ctx.fillStyle = board.grid[i][j].color;
+        }
+
+        ctx.fillRect(((i*45) + 150), (j*45) + 75, 45, 45);
+        ctx.rect(((i*45) + 150), (j*45) + 75, 45, 45);
       }
-
-      ctx.fillRect(((i*45) + 150), (j*45) + 75, 45, 45);
-      ctx.rect(((i*45) + 150), (j*45) + 75, 45, 45);
     }
+
+    ctx.fillStyle = "blue";
+    ctx.fillRect(50, 600, 45, 45);
+    ctx.fillRect(50, 555, 45, 45);
+    ctx.fillRect(95, 555, 45, 45);
+    ctx.fillRect(140, 555, 45, 45);
+    ctx.rect(50, 600, 45, 45);
+    ctx.rect(50, 555, 45, 45);
+    ctx.rect(95, 555, 45, 45);
+    ctx.rect(140, 555, 45, 45);
+
+
+    ctx.strokeStyle="#000000";
+    ctx.stroke();
+
   }
 
-  ctx.fillStyle = "blue";
-  ctx.fillRect(50, 600, 45, 45);
-  ctx.fillRect(50, 555, 45, 45);
-  ctx.fillRect(95, 555, 45, 45);
-  ctx.fillRect(140, 555, 45, 45);
-  ctx.rect(50, 600, 45, 45);
-  ctx.rect(50, 555, 45, 45);
-  ctx.rect(95, 555, 45, 45);
-  ctx.rect(140, 555, 45, 45);
-
-
-  ctx.strokeStyle="#000000";
-  ctx.stroke();
-
+  setInterval( () => render(), 300);
 
 });
 

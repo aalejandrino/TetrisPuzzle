@@ -42,6 +42,11 @@ class Game {
 
   }
 
+  clearTiles() {
+    this.score += this.board.clearRows();
+    this.score += this.board.clearColumns();
+  }
+
 }
 
 export default Game;
