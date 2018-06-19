@@ -27,7 +27,8 @@ class Game {
 
     this.score = 0;
     this.board = board;
-    this.pieces = {}
+    this.pieces = {};
+    this.selectedPiece = null;
 
   }
 
@@ -45,6 +46,34 @@ class Game {
   clearTiles() {
     this.score += this.board.clearRows();
     this.score += this.board.clearColumns();
+  }
+
+  pieceAction(num) {
+    if (this.pieces[num]) {
+      this.selectPiece(num);
+    } else if (this.pieces[num] === null) {
+      this.returnPiece(num);
+    }
+  }
+
+  selectPiece(num) {
+    this.selectedPiece = this.pieces[num]
+    this.pieces[num] = null;
+  }
+
+  returnPiece(num) {
+    if (this.selectedPiece && this.pieces[num] === null) {
+      this.pieces[num] = this.selectedPiece;
+      this.selectedPiece = null;
+    }
+  }
+
+  placePiece(coor) {
+    if (this.selectedPiece) {
+      this.board.placePiece(coor, this.selectedPiece);
+
+      this.selectedPiece = null;
+    }
   }
 
 }

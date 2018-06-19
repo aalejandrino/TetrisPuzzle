@@ -15,7 +15,7 @@ class Board {
     this.grid = a;
   }
 
-  fillTiles(coord, piece) {
+  placePiece(coord, piece) {
     for (let i = 0; i < piece.tiles.length; i++) {
       for (let j = 0; j < (piece.tiles[0]).length; j++) {
         this.grid[coord[0] + i][coord[1] + j] = piece.tiles[i][j]

@@ -96,22 +96,25 @@ document.addEventListener("DOMContentLoaded", () => {
 
     }
 
-
-    // ctx.fillRect(50, 555, 45, 45);
-    // ctx.fillRect(50, 600, 45, 45);
-    // ctx.fillRect(95, 555, 45, 45);
-    // ctx.fillRect(140, 555, 45, 45);
-    // ctx.rect(50, 600, 45, 45);
-    // ctx.rect(50, 555, 45, 45);
-    // ctx.rect(95, 555, 45, 45);
-    // ctx.rect(140, 555, 45, 45);
-
-
     ctx.strokeStyle="#000000";
     ctx.stroke();
-
   }
 
   setInterval( () => render(), 300);
 
+
+  canvasEl.addEventListener('click', (e) => {
+    console.log(e.pageX + ',' + e.pageY);
+
+
+  }, false);
+
+
 });
+
+// ======================================================================
+
+
+// canvasEl.addEventListener('click',function(evt){
+// alert(evt.clientX + ',' + evt.clientY);
+// },false);

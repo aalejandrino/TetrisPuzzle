@@ -112,7 +112,7 @@ class Board {
     this.grid = a;
   }
 
-  fillTiles(coord, piece) {
+  placePiece(coord, piece) {
     for (let i = 0; i < piece.tiles.length; i++) {
       for (let j = 0; j < (piece.tiles[0]).length; j++) {
         this.grid[coord[0] + i][coord[1] + j] = piece.tiles[i][j]
@@ -225,7 +225,8 @@ class Game {
 
     this.score = 0;
     this.board = board;
-    this.pieces = {}
+    this.pieces = {};
+    this.selectedPiece = null;
 
   }
 
@@ -243,6 +244,34 @@ class Game {
   clearTiles() {
     this.score += this.board.clearRows();
     this.score += this.board.clearColumns();
+  }
+
+  pieceAction(num) {
+    if (this.pieces[num]) {
+      this.selectPiece(num);
+    } else if (this.pieces[num] === null) {
+      this.returnPiece(num);
+    }
+  }
+
+  selectPiece(num) {
+    this.selectedPiece = this.pieces[num]
+    this.pieces[num] = null;
+  }
+
+  returnPiece(num) {
+    if (this.selectedPiece && this.pieces[num] === null) {
+      this.pieces[num] = this.selectedPiece;
+      this.selectedPiece = null;
+    }
+  }
+
+  placePiece(coor) {
+    if (this.selectedPiece) {
+      this.board.placePiece(coor, this.selectedPiece);
+
+      this.selectedPiece = null;
+    }
   }
 
 }
@@ -371,25 +400,28 @@ document.addEventListener("DOMContentLoaded", () => {
 
     }
 
-
-    // ctx.fillRect(50, 555, 45, 45);
-    // ctx.fillRect(50, 600, 45, 45);
-    // ctx.fillRect(95, 555, 45, 45);
-    // ctx.fillRect(140, 555, 45, 45);
-    // ctx.rect(50, 600, 45, 45);
-    // ctx.rect(50, 555, 45, 45);
-    // ctx.rect(95, 555, 45, 45);
-    // ctx.rect(140, 555, 45, 45);
-
-
     ctx.strokeStyle="#000000";
     ctx.stroke();
-
   }
 
   setInterval( () => render(), 300);
 
+
+  canvasEl.addEventListener('click', (e) => {
+    console.log(e.pageX + ',' + e.pageY);
+
+
+  }, false);
+
+
 });
+
+// ======================================================================
+
+
+// canvasEl.addEventListener('click',function(evt){
+// alert(evt.clientX + ',' + evt.clientY);
+// },false);
 
 
 /***/ }),
