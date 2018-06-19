@@ -11,7 +11,7 @@ export class Jay1 {
   }
 
   fillPiece() {
-    return (new Tile('indigo'))
+    return (new Tile('turquoise'))
   }
 
 }
@@ -28,7 +28,7 @@ export class Jay2 {
   }
 
   fillPiece() {
-    return (new Tile('indigo'))
+    return (new Tile('turquoise'))
   }
 
 }
@@ -45,7 +45,7 @@ export class Jay3 {
   }
 
   fillPiece() {
-    return (new Tile('indigo'))
+    return (new Tile('turquoise'))
   }
 
 }
@@ -61,7 +61,7 @@ export class Jay4 {
   }
 
   fillPiece() {
-    return (new Tile('indigo'))
+    return (new Tile('turquoise'))
   }
 
 }

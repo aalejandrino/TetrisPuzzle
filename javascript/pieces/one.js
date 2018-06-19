@@ -10,7 +10,7 @@ class One {
   }
 
   fillPiece() {
-    return (new Tile('gold'))
+    return (new Tile('khaki'))
   }
 
 }

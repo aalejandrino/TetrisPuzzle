@@ -73,7 +73,19 @@ class Game {
       this.board.placePiece(coor, this.selectedPiece);
 
       this.selectedPiece = null;
+
+      this.clearTiles();
     }
+
+    if (Object.values(this.pieces).every(this.isNull)) {
+      this.receivePieces();
+    };
+
+
+  }
+
+  isNull(el) {
+    return el === null;
   }
 
 }

@@ -13,7 +13,7 @@ class LongVert {
   }
 
   fillPiece() {
-    return (new Tile('lightblue'))
+    return (new Tile('cyan'))
   }
 
 }

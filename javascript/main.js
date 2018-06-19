@@ -52,6 +52,8 @@ document.addEventListener("DOMContentLoaded", () => {
   canvasEl.width = 750;
   canvasEl.height = 700;
 
+
+// render game ===============================================================
   const render = () => {
     var ctx = canvasEl.getContext("2d");
 
@@ -68,7 +70,8 @@ document.addEventListener("DOMContentLoaded", () => {
         if (board.grid[i][j] === 0) {
           ctx.fillStyle = "white";
         } else {
-          ctx.fillStyle = board.grid[i][j].color;
+          ctx.fillStyle = "dark" + board.grid[i][j].color;
+          // ctx.fillStyle = "silver";
         }
 
         ctx.fillRect(((i*45) + 150), (j*45) + 75, 45, 45);
@@ -103,7 +106,7 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 
   setInterval( () => render(), 500);
-
+// =============================================================================
 
   canvasEl.addEventListener('click', (e) => {
     console.log(e.pageX + ',' + e.pageY);
@@ -113,16 +116,16 @@ document.addEventListener("DOMContentLoaded", () => {
     if (e.pageY > 650 && e.pageY < 750) {
       if (e.pageX > 310 && e.pageX < 450) {
         game.pieceAction(0);
-        console.log(game.pieces);
+        // console.log(game.pieces);
       } else if (e.pageX > 500 && e.pageX < 640) {
         game.pieceAction(1);
-        console.log(game.pieces);
+        // console.log(game.pieces);
       } else if (e.pageX > 685 && e.pageX < 825) {
         game.pieceAction(2);
-        console.log(game.pieces);
+        // console.log(game.pieces);
       } else if (e.pageX > 875 && e.pageX < 1015) {
         game.pieceAction(3);
-        console.log(game.pieces);
+        // console.log(game.pieces);
       }
     }
 // =============================================================================
@@ -135,7 +138,7 @@ document.addEventListener("DOMContentLoaded", () => {
       let x = Math.floor((e.pageX - 425)/45);
       let y = Math.floor((e.pageY - 175)/45);
       game.placePiece([x,y]);
-      console.log("you placed a piece!");
+      // console.log("you placed a piece!");
     } else {
       console.log("please select a piece!");
     }

@@ -11,7 +11,7 @@ export class Three1 {
   }
 
   fillPiece() {
-    return (new Tile('yellow'))
+    return (new Tile('khaki'))
   }
 
 }
@@ -27,7 +27,7 @@ export class Three2 {
   }
 
   fillPiece() {
-    return (new Tile('yellow'))
+    return (new Tile('khaki'))
   }
 
 }
@@ -43,7 +43,7 @@ export class Three3 {
   }
 
   fillPiece() {
-    return (new Tile('yellow'))
+    return (new Tile('khaki'))
   }
 
 }
@@ -59,7 +59,7 @@ export class Three4 {
   }
 
   fillPiece() {
-    return (new Tile('yellow'))
+    return (new Tile('khaki'))
   }
 
 }
