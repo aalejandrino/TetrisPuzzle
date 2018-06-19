@@ -3,6 +3,7 @@ import Tile from "./tile";
 export class Jay1 {
   constructor() {
     this.name = 'jay';
+    this.value = 0;
 
     this.tiles = [
                   [this.fillPiece(), this.fillPiece(), this.fillPiece()],
@@ -11,6 +12,7 @@ export class Jay1 {
   }
 
   fillPiece() {
+    this.value += 1;
     return (new Tile('turquoise'))
   }
 
@@ -19,6 +21,7 @@ export class Jay1 {
 export class Jay2 {
   constructor() {
     this.name = 'jay';
+    this.value = 0;
 
     this.tiles = [
                   [this.fillPiece(), 0],
@@ -28,6 +31,7 @@ export class Jay2 {
   }
 
   fillPiece() {
+    this.value += 1;
     return (new Tile('turquoise'))
   }
 
@@ -36,6 +40,7 @@ export class Jay2 {
 export class Jay3 {
   constructor() {
     this.name = 'jay';
+    this.value = 0;
 
     this.tiles = [
                   [this.fillPiece(), this.fillPiece()],
@@ -45,6 +50,7 @@ export class Jay3 {
   }
 
   fillPiece() {
+    this.value += 1;
     return (new Tile('turquoise'))
   }
 
@@ -53,6 +59,7 @@ export class Jay3 {
 export class Jay4 {
   constructor() {
     this.name = 'jay';
+    this.value = 0;
 
     this.tiles = [
                   [0, 0, this.fillPiece()],
@@ -61,6 +68,7 @@ export class Jay4 {
   }
 
   fillPiece() {
+    this.value += 1;
     return (new Tile('turquoise'))
   }
 

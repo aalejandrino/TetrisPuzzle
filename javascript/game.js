@@ -71,7 +71,7 @@ class Game {
   placePiece(coor) {
     if (this.selectedPiece) {
       this.board.placePiece(coor, this.selectedPiece);
-
+      this.score += this.selectedPiece.value;
       this.selectedPiece = null;
 
       this.clearTiles();

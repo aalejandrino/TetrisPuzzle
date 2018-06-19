@@ -277,7 +277,7 @@ class Game {
   placePiece(coor) {
     if (this.selectedPiece) {
       this.board.placePiece(coor, this.selectedPiece);
-
+      this.score += this.selectedPiece.value;
       this.selectedPiece = null;
 
       this.clearTiles();
@@ -499,6 +499,7 @@ __webpack_require__.r(__webpack_exports__);
 class BigSquare {
   constructor() {
     this.name = 'big_square';
+    this.value = 0;
 
     this.tiles = [
                   [this.fillPiece(), this.fillPiece(), this.fillPiece()],
@@ -508,7 +509,8 @@ class BigSquare {
   }
 
   fillPiece() {
-    return (new _tile__WEBPACK_IMPORTED_MODULE_0__["default"]('blue'))
+    this.value += 1;
+    return (new _tile__WEBPACK_IMPORTED_MODULE_0__["default"]('blue'));
   }
 
 }
@@ -537,6 +539,8 @@ __webpack_require__.r(__webpack_exports__);
 class Ell1 {
   constructor() {
     this.name = 'ell';
+    this.value = 0;
+    this.value += 1;
 
     this.tiles = [
                   [this.fillPiece(), this.fillPiece(), this.fillPiece()],
@@ -553,6 +557,7 @@ class Ell1 {
 class Ell2 {
   constructor() {
     this.name = 'ell';
+    this.value = 0;
 
     this.tiles = [
                   [this.fillPiece(), this.fillPiece()],
@@ -562,6 +567,7 @@ class Ell2 {
   }
 
   fillPiece() {
+    this.value += 1;
     return (new _tile__WEBPACK_IMPORTED_MODULE_0__["default"]('green'))
   }
 
@@ -570,6 +576,7 @@ class Ell2 {
 class Ell3 {
   constructor() {
     this.name = 'ell';
+    this.value = 0;
 
     this.tiles = [
                   [0, this.fillPiece()],
@@ -579,6 +586,7 @@ class Ell3 {
   }
 
   fillPiece() {
+    this.value += 1;
     return (new _tile__WEBPACK_IMPORTED_MODULE_0__["default"]('green'))
   }
 
@@ -587,6 +595,7 @@ class Ell3 {
 class Ell4 {
   constructor() {
     this.name = 'ell';
+    this.value = 0;
 
     this.tiles = [
                   [this.fillPiece(), 0, 0],
@@ -595,6 +604,7 @@ class Ell4 {
   }
 
   fillPiece() {
+    this.value += 1;
     return (new _tile__WEBPACK_IMPORTED_MODULE_0__["default"]('green'))
   }
 
@@ -620,6 +630,7 @@ __webpack_require__.r(__webpack_exports__);
 class Ess1 {
   constructor() {
     this.name = 'ess';
+    this.value = 0;
 
     this.tiles = [
                   [0, this.fillPiece()],
@@ -629,6 +640,7 @@ class Ess1 {
   }
 
   fillPiece() {
+    this.value += 1;
     return (new _tile__WEBPACK_IMPORTED_MODULE_0__["default"]('violet'))
   }
 
@@ -637,6 +649,7 @@ class Ess1 {
 class Ess2 {
   constructor() {
     this.name = 'ess';
+    this.value = 0;
 
     this.tiles = [
                   [this.fillPiece(), this.fillPiece(), 0],
@@ -645,6 +658,7 @@ class Ess2 {
   }
 
   fillPiece() {
+    this.value += 1;
     return (new _tile__WEBPACK_IMPORTED_MODULE_0__["default"]('violet'))
   }
 
@@ -672,6 +686,7 @@ __webpack_require__.r(__webpack_exports__);
 class Jay1 {
   constructor() {
     this.name = 'jay';
+    this.value = 0;
 
     this.tiles = [
                   [this.fillPiece(), this.fillPiece(), this.fillPiece()],
@@ -680,6 +695,7 @@ class Jay1 {
   }
 
   fillPiece() {
+    this.value += 1;
     return (new _tile__WEBPACK_IMPORTED_MODULE_0__["default"]('turquoise'))
   }
 
@@ -688,6 +704,7 @@ class Jay1 {
 class Jay2 {
   constructor() {
     this.name = 'jay';
+    this.value = 0;
 
     this.tiles = [
                   [this.fillPiece(), 0],
@@ -697,6 +714,7 @@ class Jay2 {
   }
 
   fillPiece() {
+    this.value += 1;
     return (new _tile__WEBPACK_IMPORTED_MODULE_0__["default"]('turquoise'))
   }
 
@@ -705,6 +723,7 @@ class Jay2 {
 class Jay3 {
   constructor() {
     this.name = 'jay';
+    this.value = 0;
 
     this.tiles = [
                   [this.fillPiece(), this.fillPiece()],
@@ -714,6 +733,7 @@ class Jay3 {
   }
 
   fillPiece() {
+    this.value += 1;
     return (new _tile__WEBPACK_IMPORTED_MODULE_0__["default"]('turquoise'))
   }
 
@@ -722,6 +742,7 @@ class Jay3 {
 class Jay4 {
   constructor() {
     this.name = 'jay';
+    this.value = 0;
 
     this.tiles = [
                   [0, 0, this.fillPiece()],
@@ -730,6 +751,7 @@ class Jay4 {
   }
 
   fillPiece() {
+    this.value += 1;
     return (new _tile__WEBPACK_IMPORTED_MODULE_0__["default"]('turquoise'))
   }
 
@@ -753,6 +775,7 @@ __webpack_require__.r(__webpack_exports__);
 class LongHoriz {
   constructor() {
     this.name = 'longhoriz';
+    this.value = 0;
 
     this.tiles = [
                   [ this.fillPiece() ],
@@ -763,6 +786,7 @@ class LongHoriz {
   }
 
   fillPiece() {
+    this.value += 1;
     return (new _tile__WEBPACK_IMPORTED_MODULE_0__["default"]('cyan'))
   }
 
@@ -788,6 +812,7 @@ __webpack_require__.r(__webpack_exports__);
 class LongVert {
   constructor() {
     this.name = 'longvert';
+    this.value = 0;
 
     this.tiles = [
                   [ this.fillPiece(),
@@ -798,6 +823,7 @@ class LongVert {
   }
 
   fillPiece() {
+    this.value += 1;
     return (new _tile__WEBPACK_IMPORTED_MODULE_0__["default"]('cyan'))
   }
 
@@ -823,6 +849,7 @@ __webpack_require__.r(__webpack_exports__);
 class One {
   constructor() {
     this.name = 'one';
+    this.value = 0;
 
     this.tiles = [
                   [this.fillPiece()]
@@ -830,6 +857,7 @@ class One {
   }
 
   fillPiece() {
+    this.value += 1;
     return (new _tile__WEBPACK_IMPORTED_MODULE_0__["default"]('khaki'))
   }
 
@@ -855,6 +883,7 @@ __webpack_require__.r(__webpack_exports__);
 class Square {
   constructor() {
     this.name = 'square';
+    this.value = 0;
 
     this.tiles = [
                   [this.fillPiece(), this.fillPiece()],
@@ -863,6 +892,7 @@ class Square {
   }
 
   fillPiece() {
+    this.value += 1;
     return (new _tile__WEBPACK_IMPORTED_MODULE_0__["default"]('blue'))
   }
 
@@ -892,6 +922,7 @@ __webpack_require__.r(__webpack_exports__);
 class Three1 {
   constructor() {
     this.name = 'three';
+    this.value = 0;
 
     this.tiles = [
                   [this.fillPiece(), this.fillPiece()],
@@ -900,6 +931,7 @@ class Three1 {
   }
 
   fillPiece() {
+    this.value += 1;
     return (new _tile__WEBPACK_IMPORTED_MODULE_0__["default"]('khaki'))
   }
 
@@ -908,6 +940,7 @@ class Three1 {
 class Three2 {
   constructor() {
     this.name = 'three';
+    this.value = 0;
 
     this.tiles = [
                   [this.fillPiece(), this.fillPiece()],
@@ -916,6 +949,7 @@ class Three2 {
   }
 
   fillPiece() {
+    this.value += 1;
     return (new _tile__WEBPACK_IMPORTED_MODULE_0__["default"]('khaki'))
   }
 
@@ -924,6 +958,7 @@ class Three2 {
 class Three3 {
   constructor() {
     this.name = 'three';
+    this.value = 0;
 
     this.tiles = [
                   [this.fillPiece(), 0],
@@ -932,6 +967,7 @@ class Three3 {
   }
 
   fillPiece() {
+    this.value += 1;
     return (new _tile__WEBPACK_IMPORTED_MODULE_0__["default"]('khaki'))
   }
 
@@ -940,6 +976,7 @@ class Three3 {
 class Three4 {
   constructor() {
     this.name = 'three';
+    this.value = 0;
 
     this.tiles = [
                   [0, this.fillPiece()],
@@ -948,6 +985,7 @@ class Three4 {
   }
 
   fillPiece() {
+    this.value += 1;
     return (new _tile__WEBPACK_IMPORTED_MODULE_0__["default"]('khaki'))
   }
 
@@ -968,7 +1006,6 @@ __webpack_require__.r(__webpack_exports__);
 class Tile {
   constructor(color) {
     this.color = color;
-    this.value = 1;
   }
 }
 
@@ -994,6 +1031,7 @@ __webpack_require__.r(__webpack_exports__);
 class Two1 {
   constructor() {
     this.name = 'two';
+    this.value = 0;
 
     this.tiles = [
                   [this.fillPiece()],
@@ -1002,6 +1040,7 @@ class Two1 {
   }
 
   fillPiece() {
+    this.value += 1;
     return (new _tile__WEBPACK_IMPORTED_MODULE_0__["default"]('orange'))
   }
 
@@ -1010,6 +1049,7 @@ class Two1 {
 class Two2 {
   constructor() {
     this.name = 'two';
+    this.value = 0;
 
     this.tiles = [
                   [this.fillPiece(), this.fillPiece()]
@@ -1017,6 +1057,7 @@ class Two2 {
   }
 
   fillPiece() {
+    this.value += 1;
     return (new _tile__WEBPACK_IMPORTED_MODULE_0__["default"]('orange'))
   }
 
@@ -1042,6 +1083,7 @@ __webpack_require__.r(__webpack_exports__);
 class Zee1 {
   constructor() {
     this.name = 'zee';
+    this.value = 0;
 
     this.tiles = [
                   [this.fillPiece(), 0],
@@ -1051,6 +1093,7 @@ class Zee1 {
   }
 
   fillPiece() {
+    this.value += 1;
     return (new _tile__WEBPACK_IMPORTED_MODULE_0__["default"]('red'))
   }
 
@@ -1059,6 +1102,7 @@ class Zee1 {
 class Zee2 {
   constructor() {
     this.name = 'zee';
+    this.value = 0;
 
     this.tiles = [
                   [0, this.fillPiece(), this.fillPiece()],
@@ -1067,6 +1111,7 @@ class Zee2 {
   }
 
   fillPiece() {
+    this.value += 1;
     return (new _tile__WEBPACK_IMPORTED_MODULE_0__["default"]('red'))
   }
 

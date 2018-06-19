@@ -3,6 +3,7 @@ import Tile from "./tile";
 export class Zee1 {
   constructor() {
     this.name = 'zee';
+    this.value = 0;
 
     this.tiles = [
                   [this.fillPiece(), 0],
@@ -12,6 +13,7 @@ export class Zee1 {
   }
 
   fillPiece() {
+    this.value += 1;
     return (new Tile('red'))
   }
 
@@ -20,6 +22,7 @@ export class Zee1 {
 export class Zee2 {
   constructor() {
     this.name = 'zee';
+    this.value = 0;
 
     this.tiles = [
                   [0, this.fillPiece(), this.fillPiece()],
@@ -28,6 +31,7 @@ export class Zee2 {
   }
 
   fillPiece() {
+    this.value += 1;
     return (new Tile('red'))
   }
 

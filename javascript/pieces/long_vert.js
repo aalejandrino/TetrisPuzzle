@@ -3,6 +3,7 @@ import Tile from "./tile";
 class LongVert {
   constructor() {
     this.name = 'longvert';
+    this.value = 0;
 
     this.tiles = [
                   [ this.fillPiece(),
@@ -13,6 +14,7 @@ class LongVert {
   }
 
   fillPiece() {
+    this.value += 1;
     return (new Tile('cyan'))
   }
 
