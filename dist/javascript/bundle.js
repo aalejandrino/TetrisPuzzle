@@ -162,6 +162,10 @@ class Board {
     return score;
   }
 
+  clearColumn(colNum) {
+    this.grid[colNum].fill(0)
+  }
+
 
 
 }
@@ -181,14 +185,20 @@ class Board {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _pieces_square__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./pieces/square */ "./javascript/pieces/square.js");
-/* harmony import */ var _pieces_big_square__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./pieces/big_square */ "./javascript/pieces/big_square.js");
-/* harmony import */ var _pieces_ess__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./pieces/ess */ "./javascript/pieces/ess.js");
-/* harmony import */ var _pieces_zee__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./pieces/zee */ "./javascript/pieces/zee.js");
-/* harmony import */ var _pieces_long_horiz__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./pieces/long_horiz */ "./javascript/pieces/long_horiz.js");
-/* harmony import */ var _pieces_long_vert__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./pieces/long_vert */ "./javascript/pieces/long_vert.js");
-/* harmony import */ var _pieces_ell__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./pieces/ell */ "./javascript/pieces/ell.js");
-/* harmony import */ var _pieces_jay__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./pieces/jay */ "./javascript/pieces/jay.js");
+/* harmony import */ var _pieces_one__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./pieces/one */ "./javascript/pieces/one.js");
+/* harmony import */ var _pieces_two__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./pieces/two */ "./javascript/pieces/two.js");
+/* harmony import */ var _pieces_three__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./pieces/three */ "./javascript/pieces/three.js");
+/* harmony import */ var _pieces_square__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./pieces/square */ "./javascript/pieces/square.js");
+/* harmony import */ var _pieces_big_square__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./pieces/big_square */ "./javascript/pieces/big_square.js");
+/* harmony import */ var _pieces_ess__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./pieces/ess */ "./javascript/pieces/ess.js");
+/* harmony import */ var _pieces_zee__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./pieces/zee */ "./javascript/pieces/zee.js");
+/* harmony import */ var _pieces_long_horiz__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./pieces/long_horiz */ "./javascript/pieces/long_horiz.js");
+/* harmony import */ var _pieces_long_vert__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ./pieces/long_vert */ "./javascript/pieces/long_vert.js");
+/* harmony import */ var _pieces_ell__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ./pieces/ell */ "./javascript/pieces/ell.js");
+/* harmony import */ var _pieces_jay__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ./pieces/jay */ "./javascript/pieces/jay.js");
+
+
+
 
 
 
@@ -199,18 +209,15 @@ __webpack_require__.r(__webpack_exports__);
 
 
   var PIECES = {
-    0 : new _pieces_square__WEBPACK_IMPORTED_MODULE_0__["default"](),    1 : new _pieces_big_square__WEBPACK_IMPORTED_MODULE_1__["default"](),
-    2 : new _pieces_square__WEBPACK_IMPORTED_MODULE_0__["default"](),    3 : new _pieces_big_square__WEBPACK_IMPORTED_MODULE_1__["default"](),
-    4 : new _pieces_ess__WEBPACK_IMPORTED_MODULE_2__["Ess1"](),      5 : new _pieces_ess__WEBPACK_IMPORTED_MODULE_2__["Ess2"](),
-    6 : new _pieces_ess__WEBPACK_IMPORTED_MODULE_2__["Ess1"](),      7 : new _pieces_ess__WEBPACK_IMPORTED_MODULE_2__["Ess2"](),
-    8 : new _pieces_zee__WEBPACK_IMPORTED_MODULE_3__["Zee1"](),      9 : new _pieces_zee__WEBPACK_IMPORTED_MODULE_3__["Zee2"](),
-    10 : new _pieces_zee__WEBPACK_IMPORTED_MODULE_3__["Zee1"](),      11 : new _pieces_zee__WEBPACK_IMPORTED_MODULE_3__["Zee2"](),
-    12 : new _pieces_long_horiz__WEBPACK_IMPORTED_MODULE_4__["default"](), 13 : new _pieces_long_vert__WEBPACK_IMPORTED_MODULE_5__["default"](),
-    14 : new _pieces_long_horiz__WEBPACK_IMPORTED_MODULE_4__["default"](), 15 : new _pieces_long_vert__WEBPACK_IMPORTED_MODULE_5__["default"](),
-    16 : new _pieces_jay__WEBPACK_IMPORTED_MODULE_7__["Jay1"](), 17 : new _pieces_jay__WEBPACK_IMPORTED_MODULE_7__["Jay2"](),
-    18 : new _pieces_jay__WEBPACK_IMPORTED_MODULE_7__["Jay3"](), 19 : new _pieces_jay__WEBPACK_IMPORTED_MODULE_7__["Jay4"](),
-    20 : new _pieces_ell__WEBPACK_IMPORTED_MODULE_6__["Ell1"](), 21 : new _pieces_ell__WEBPACK_IMPORTED_MODULE_6__["Ell2"](),
-    22 : new _pieces_ell__WEBPACK_IMPORTED_MODULE_6__["Ell3"](), 23 : new _pieces_ell__WEBPACK_IMPORTED_MODULE_6__["Ell4"](),
+    0 : new _pieces_square__WEBPACK_IMPORTED_MODULE_3__["default"](),     1 : new _pieces_big_square__WEBPACK_IMPORTED_MODULE_4__["default"](),   2 : new _pieces_square__WEBPACK_IMPORTED_MODULE_3__["default"](),     3 : new _pieces_big_square__WEBPACK_IMPORTED_MODULE_4__["default"](),
+    4 : new _pieces_ess__WEBPACK_IMPORTED_MODULE_5__["Ess1"](),       5 : new _pieces_ess__WEBPACK_IMPORTED_MODULE_5__["Ess2"](),        6 : new _pieces_ess__WEBPACK_IMPORTED_MODULE_5__["Ess1"](),       7 : new _pieces_ess__WEBPACK_IMPORTED_MODULE_5__["Ess2"](),
+    8 : new _pieces_zee__WEBPACK_IMPORTED_MODULE_6__["Zee1"](),       9 : new _pieces_zee__WEBPACK_IMPORTED_MODULE_6__["Zee2"](),        10 : new _pieces_zee__WEBPACK_IMPORTED_MODULE_6__["Zee1"](),      11 : new _pieces_zee__WEBPACK_IMPORTED_MODULE_6__["Zee2"](),
+    12 : new _pieces_long_horiz__WEBPACK_IMPORTED_MODULE_7__["default"](), 13 : new _pieces_long_vert__WEBPACK_IMPORTED_MODULE_8__["default"](),   14 : new _pieces_long_horiz__WEBPACK_IMPORTED_MODULE_7__["default"](), 15 : new _pieces_long_vert__WEBPACK_IMPORTED_MODULE_8__["default"](),
+    16 : new _pieces_jay__WEBPACK_IMPORTED_MODULE_10__["Jay1"](),      17 : new _pieces_jay__WEBPACK_IMPORTED_MODULE_10__["Jay2"](),       18 : new _pieces_jay__WEBPACK_IMPORTED_MODULE_10__["Jay3"](),      19 : new _pieces_jay__WEBPACK_IMPORTED_MODULE_10__["Jay4"](),
+    20 : new _pieces_ell__WEBPACK_IMPORTED_MODULE_9__["Ell1"](),      21 : new _pieces_ell__WEBPACK_IMPORTED_MODULE_9__["Ell2"](),       22 : new _pieces_ell__WEBPACK_IMPORTED_MODULE_9__["Ell3"](),      23 : new _pieces_ell__WEBPACK_IMPORTED_MODULE_9__["Ell4"](),
+    24 : new _pieces_one__WEBPACK_IMPORTED_MODULE_0__["default"](),       25 : new _pieces_one__WEBPACK_IMPORTED_MODULE_0__["default"](),        26 : new _pieces_one__WEBPACK_IMPORTED_MODULE_0__["default"](),       27 : new _pieces_one__WEBPACK_IMPORTED_MODULE_0__["default"](),
+    28 : new _pieces_two__WEBPACK_IMPORTED_MODULE_1__["Two1"](),      29 : new _pieces_two__WEBPACK_IMPORTED_MODULE_1__["Two2"](),       30 : new _pieces_two__WEBPACK_IMPORTED_MODULE_1__["Two1"](),      31 : new _pieces_two__WEBPACK_IMPORTED_MODULE_1__["Two2"](),
+    32 : new _pieces_three__WEBPACK_IMPORTED_MODULE_2__["Three1"](),    33 : new _pieces_three__WEBPACK_IMPORTED_MODULE_2__["Three2"](),     34 : new _pieces_three__WEBPACK_IMPORTED_MODULE_2__["Three3"](),    35 : new _pieces_three__WEBPACK_IMPORTED_MODULE_2__["Three4"]()
   }
 
 class Game {
@@ -256,13 +263,19 @@ class Game {
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _board__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./board */ "./javascript/board.js");
 /* harmony import */ var _game__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./game */ "./javascript/game.js");
-/* harmony import */ var _pieces_square__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./pieces/square */ "./javascript/pieces/square.js");
-/* harmony import */ var _pieces_big_square__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./pieces/big_square */ "./javascript/pieces/big_square.js");
-/* harmony import */ var _pieces_long_horiz__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./pieces/long_horiz */ "./javascript/pieces/long_horiz.js");
-/* harmony import */ var _pieces_long_vert__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./pieces/long_vert */ "./javascript/pieces/long_vert.js");
-/* harmony import */ var _pieces_zee__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./pieces/zee */ "./javascript/pieces/zee.js");
-/* harmony import */ var _pieces_ell__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./pieces/ell */ "./javascript/pieces/ell.js");
-/* harmony import */ var _pieces_jay__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ./pieces/jay */ "./javascript/pieces/jay.js");
+/* harmony import */ var _pieces_one__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./pieces/one */ "./javascript/pieces/one.js");
+/* harmony import */ var _pieces_two__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./pieces/two */ "./javascript/pieces/two.js");
+/* harmony import */ var _pieces_three__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./pieces/three */ "./javascript/pieces/three.js");
+/* harmony import */ var _pieces_square__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./pieces/square */ "./javascript/pieces/square.js");
+/* harmony import */ var _pieces_big_square__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./pieces/big_square */ "./javascript/pieces/big_square.js");
+/* harmony import */ var _pieces_long_horiz__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./pieces/long_horiz */ "./javascript/pieces/long_horiz.js");
+/* harmony import */ var _pieces_long_vert__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ./pieces/long_vert */ "./javascript/pieces/long_vert.js");
+/* harmony import */ var _pieces_zee__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ./pieces/zee */ "./javascript/pieces/zee.js");
+/* harmony import */ var _pieces_ell__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ./pieces/ell */ "./javascript/pieces/ell.js");
+/* harmony import */ var _pieces_jay__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! ./pieces/jay */ "./javascript/pieces/jay.js");
+
+
+
 
 
 
@@ -276,21 +289,23 @@ __webpack_require__.r(__webpack_exports__);
 // Initialize canvas and display splash
 
 var board = new _board__WEBPACK_IMPORTED_MODULE_0__["default"]();
-
 var game = new _game__WEBPACK_IMPORTED_MODULE_1__["default"](board);
-var square = new _pieces_square__WEBPACK_IMPORTED_MODULE_2__["default"]();
-var bigsquare = new _pieces_big_square__WEBPACK_IMPORTED_MODULE_3__["default"]();
-var longhoriz = new _pieces_long_horiz__WEBPACK_IMPORTED_MODULE_4__["default"]();
-var longvert = new _pieces_long_vert__WEBPACK_IMPORTED_MODULE_5__["default"]();
-var jay1 = new _pieces_jay__WEBPACK_IMPORTED_MODULE_8__["Jay4"]();
+
+var one = new _pieces_one__WEBPACK_IMPORTED_MODULE_2__["default"]();
+var square = new _pieces_square__WEBPACK_IMPORTED_MODULE_5__["default"]();
+var bigsquare = new _pieces_big_square__WEBPACK_IMPORTED_MODULE_6__["default"]();
+var longhoriz = new _pieces_long_horiz__WEBPACK_IMPORTED_MODULE_7__["default"]();
+var longvert = new _pieces_long_vert__WEBPACK_IMPORTED_MODULE_8__["default"]();
+var test = new _pieces_three__WEBPACK_IMPORTED_MODULE_4__["Three4"]();
 //
 
+board.fillTiles([5,3], one);
 board.fillTiles([1,0], square);
 board.fillTiles([1,2], square);
 board.fillTiles([1,4], square);
 board.fillTiles([1,6], square);
 board.fillTiles([4,0], square);
-board.fillTiles([5,5], jay1);
+board.fillTiles([5,5], test);
 board.fillTiles([6,0], longhoriz);
 board.fillTiles([6,1], longhoriz);
 board.fillTiles([0,0], longvert);
@@ -306,6 +321,7 @@ game.receivePieces();
 document.addEventListener("DOMContentLoaded", () => {
   console.log("Hey there and welcome to TetrisPuzzle");
   window.game = game;
+  console.log(game.pieces);
 
   var canvasEl = document.getElementById("canvas");
   canvasEl.width = 750;
@@ -336,14 +352,34 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 
     ctx.fillStyle = "blue";
-    ctx.fillRect(50, 600, 45, 45);
-    ctx.fillRect(50, 555, 45, 45);
-    ctx.fillRect(95, 555, 45, 45);
-    ctx.fillRect(140, 555, 45, 45);
-    ctx.rect(50, 600, 45, 45);
-    ctx.rect(50, 555, 45, 45);
-    ctx.rect(95, 555, 45, 45);
-    ctx.rect(140, 555, 45, 45);
+    for (let n = 0; n < 4; n++) {
+      let current_piece = game.pieces[n];
+
+      for (let i = 0; i < current_piece.tiles.length; i++) {
+        for (let j = 0; j < current_piece.tiles[0].length; j++) {
+
+          if (current_piece.tiles[i][j] === 0) {
+            continue;
+          } else {
+            ctx.fillStyle = current_piece.tiles[i][j].color;
+            ctx.fillRect((i*45) + 40 + (n*187.5), (j*45) + 555, 45, 45)
+            ctx.rect((i*45) + 40 + (n*187.5), (j*45) + 555, 45, 45)
+          }
+
+        }
+      }
+
+    }
+
+
+    // ctx.fillRect(50, 555, 45, 45);
+    // ctx.fillRect(50, 600, 45, 45);
+    // ctx.fillRect(95, 555, 45, 45);
+    // ctx.fillRect(140, 555, 45, 45);
+    // ctx.rect(50, 600, 45, 45);
+    // ctx.rect(50, 555, 45, 45);
+    // ctx.rect(95, 555, 45, 45);
+    // ctx.rect(140, 555, 45, 45);
 
 
     ctx.strokeStyle="#000000";
@@ -682,6 +718,38 @@ class LongVert {
 
 /***/ }),
 
+/***/ "./javascript/pieces/one.js":
+/*!**********************************!*\
+  !*** ./javascript/pieces/one.js ***!
+  \**********************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _tile__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./tile */ "./javascript/pieces/tile.js");
+
+
+class One {
+  constructor() {
+    this.name = 'one';
+
+    this.tiles = [
+                  [this.fillPiece()]
+                ];
+  }
+
+  fillPiece() {
+    return (new _tile__WEBPACK_IMPORTED_MODULE_0__["default"]('gold'))
+  }
+
+}
+
+/* harmony default export */ __webpack_exports__["default"] = (One);
+
+
+/***/ }),
+
 /***/ "./javascript/pieces/square.js":
 /*!*************************************!*\
   !*** ./javascript/pieces/square.js ***!
@@ -715,6 +783,89 @@ class Square {
 
 /***/ }),
 
+/***/ "./javascript/pieces/three.js":
+/*!************************************!*\
+  !*** ./javascript/pieces/three.js ***!
+  \************************************/
+/*! exports provided: Three1, Three2, Three3, Three4 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "Three1", function() { return Three1; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "Three2", function() { return Three2; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "Three3", function() { return Three3; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "Three4", function() { return Three4; });
+/* harmony import */ var _tile__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./tile */ "./javascript/pieces/tile.js");
+
+
+class Three1 {
+  constructor() {
+    this.name = 'three';
+
+    this.tiles = [
+                  [this.fillPiece(), this.fillPiece()],
+                  [0, this.fillPiece()]
+                ];
+  }
+
+  fillPiece() {
+    return (new _tile__WEBPACK_IMPORTED_MODULE_0__["default"]('yellow'))
+  }
+
+}
+
+class Three2 {
+  constructor() {
+    this.name = 'three';
+
+    this.tiles = [
+                  [this.fillPiece(), this.fillPiece()],
+                  [this.fillPiece(), 0]
+                ];
+  }
+
+  fillPiece() {
+    return (new _tile__WEBPACK_IMPORTED_MODULE_0__["default"]('yellow'))
+  }
+
+}
+
+class Three3 {
+  constructor() {
+    this.name = 'three';
+
+    this.tiles = [
+                  [this.fillPiece(), 0],
+                  [this.fillPiece(), this.fillPiece()]
+                ];
+  }
+
+  fillPiece() {
+    return (new _tile__WEBPACK_IMPORTED_MODULE_0__["default"]('yellow'))
+  }
+
+}
+
+class Three4 {
+  constructor() {
+    this.name = 'three';
+
+    this.tiles = [
+                  [0, this.fillPiece()],
+                  [this.fillPiece(), this.fillPiece()]
+                ];
+  }
+
+  fillPiece() {
+    return (new _tile__WEBPACK_IMPORTED_MODULE_0__["default"]('yellow'))
+  }
+
+}
+
+
+/***/ }),
+
 /***/ "./javascript/pieces/tile.js":
 /*!***********************************!*\
   !*** ./javascript/pieces/tile.js ***!
@@ -732,6 +883,54 @@ class Tile {
 }
 
 /* harmony default export */ __webpack_exports__["default"] = (Tile);
+
+
+/***/ }),
+
+/***/ "./javascript/pieces/two.js":
+/*!**********************************!*\
+  !*** ./javascript/pieces/two.js ***!
+  \**********************************/
+/*! exports provided: Two1, Two2 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "Two1", function() { return Two1; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "Two2", function() { return Two2; });
+/* harmony import */ var _tile__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./tile */ "./javascript/pieces/tile.js");
+
+
+class Two1 {
+  constructor() {
+    this.name = 'two';
+
+    this.tiles = [
+                  [this.fillPiece()],
+                  [this.fillPiece()]
+                ];
+  }
+
+  fillPiece() {
+    return (new _tile__WEBPACK_IMPORTED_MODULE_0__["default"]('orange'))
+  }
+
+}
+
+class Two2 {
+  constructor() {
+    this.name = 'two';
+
+    this.tiles = [
+                  [this.fillPiece(), this.fillPiece()]
+                ];
+  }
+
+  fillPiece() {
+    return (new _tile__WEBPACK_IMPORTED_MODULE_0__["default"]('orange'))
+  }
+
+}
 
 
 /***/ }),

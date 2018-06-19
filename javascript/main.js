@@ -1,5 +1,8 @@
 import Board from './board';
 import Game from './game';
+import One from './pieces/one';
+import { Two1, Two2 } from './pieces/two';
+import { Three1, Three2, Three3, Three4 } from './pieces/three';
 import Square from './pieces/square';
 import BigSquare from './pieces/big_square';
 import LongHoriz from './pieces/long_horiz';
@@ -11,21 +14,23 @@ import { Jay1, Jay2, Jay3, Jay4 } from './pieces/jay';
 // Initialize canvas and display splash
 
 var board = new Board();
-
 var game = new Game(board);
+
+var one = new One();
 var square = new Square();
 var bigsquare = new BigSquare();
 var longhoriz = new LongHoriz();
 var longvert = new LongVert();
-var jay1 = new Jay4();
+var test = new Three4();
 //
 
+board.fillTiles([5,3], one);
 board.fillTiles([1,0], square);
 board.fillTiles([1,2], square);
 board.fillTiles([1,4], square);
 board.fillTiles([1,6], square);
 board.fillTiles([4,0], square);
-board.fillTiles([5,5], jay1);
+board.fillTiles([5,5], test);
 board.fillTiles([6,0], longhoriz);
 board.fillTiles([6,1], longhoriz);
 board.fillTiles([0,0], longvert);
@@ -41,6 +46,7 @@ game.receivePieces();
 document.addEventListener("DOMContentLoaded", () => {
   console.log("Hey there and welcome to TetrisPuzzle");
   window.game = game;
+  console.log(game.pieces);
 
   var canvasEl = document.getElementById("canvas");
   canvasEl.width = 750;
@@ -71,14 +77,34 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 
     ctx.fillStyle = "blue";
-    ctx.fillRect(50, 600, 45, 45);
-    ctx.fillRect(50, 555, 45, 45);
-    ctx.fillRect(95, 555, 45, 45);
-    ctx.fillRect(140, 555, 45, 45);
-    ctx.rect(50, 600, 45, 45);
-    ctx.rect(50, 555, 45, 45);
-    ctx.rect(95, 555, 45, 45);
-    ctx.rect(140, 555, 45, 45);
+    for (let n = 0; n < 4; n++) {
+      let current_piece = game.pieces[n];
+
+      for (let i = 0; i < current_piece.tiles.length; i++) {
+        for (let j = 0; j < current_piece.tiles[0].length; j++) {
+
+          if (current_piece.tiles[i][j] === 0) {
+            continue;
+          } else {
+            ctx.fillStyle = current_piece.tiles[i][j].color;
+            ctx.fillRect((i*45) + 40 + (n*187.5), (j*45) + 555, 45, 45)
+            ctx.rect((i*45) + 40 + (n*187.5), (j*45) + 555, 45, 45)
+          }
+
+        }
+      }
+
+    }
+
+
+    // ctx.fillRect(50, 555, 45, 45);
+    // ctx.fillRect(50, 600, 45, 45);
+    // ctx.fillRect(95, 555, 45, 45);
+    // ctx.fillRect(140, 555, 45, 45);
+    // ctx.rect(50, 600, 45, 45);
+    // ctx.rect(50, 555, 45, 45);
+    // ctx.rect(95, 555, 45, 45);
+    // ctx.rect(140, 555, 45, 45);
 
 
     ctx.strokeStyle="#000000";

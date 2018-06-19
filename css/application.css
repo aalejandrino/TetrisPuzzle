@@ -21,7 +21,7 @@ header {
 }
 
 header h1 {
-  font-size: 38px;
+  font-size: 48px;
   margin: 15px 0px;
 }
 
@@ -85,27 +85,29 @@ header h1 {
   position: relative;
   vertical-align: middle;
   display: inline-flex;
-  margin: 10px;
+  margin: 12px 0px 10px 0px;
 }
 
 #github {
   background-image: url('https://s6.postimg.cc/kkspu08a9/github_logo.png');
-  background-size: 25px 25px;
+  background-size: 36px 36px;
   position: relative;
   background-color: white;
-  width: 25px;
-  height: 25px;
-  border-radius: 10px;
+  width: 36px;
+  height: 36px;
+  border-radius: 16px;
+  margin-right: 10px;
 }
 
 #linkedin {
   background-image: url('https://www.northeastern.edu/careers/wp-content/uploads/2012/10/CBpFkPaz.png');
-  background-size: 25px 25px;
+  background-size: 36px 36px;
   position: relative;
   background-color: white;
-  width: 25px;
-  height: 25px;
-  border-radius: 3px;
+  width: 36px;
+  height: 36px;
+  border-radius: 5px;
+  margin-left: 10px;
 }
 
 #canvas {

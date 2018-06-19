@@ -65,6 +65,10 @@ class Board {
     return score;
   }
 
+  clearColumn(colNum) {
+    this.grid[colNum].fill(0)
+  }
+
 
 
 }
