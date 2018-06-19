@@ -16,19 +16,37 @@ class Board {
   }
 
   placePiece(coord, piece) {
+    if (this.is_validMove(coord, piece)) {
+      for (let i = 0; i < piece.tiles.length; i++) {
+        for (let j = 0; j < (piece.tiles[0]).length; j++) {
+          let current_tile = this.grid[coord[0] + i][coord[1] + j];
+          let new_tile = piece.tiles[i][j];
+
+          if (current_tile === 0 && new_tile !== 0) {
+            this.grid[coord[0] + i][coord[1] + j] = new_tile;
+          }
+        }
+      }
+    }
+  }
+
+  is_validMove(coord, piece) {
     for (let i = 0; i < piece.tiles.length; i++) {
       for (let j = 0; j < (piece.tiles[0]).length; j++) {
+        if ((coord[0] + piece.tiles.length-1) > 9 || (coord[1] + piece.tiles[0].length-1) > 9) {
+          return false;
+        }
+
         let current_tile = this.grid[coord[0] + i][coord[1] + j];
         let new_tile = piece.tiles[i][j];
 
-        if (current_tile === 0 && new_tile !== 0) {
-          this.grid[coord[0] + i][coord[1] + j] = new_tile;
+        if (current_tile !== 0 && new_tile !== 0) {
+          return false;
         }
-
       }
     }
 
-    
+    return true;
   }
 
   checkForTiles(el) {

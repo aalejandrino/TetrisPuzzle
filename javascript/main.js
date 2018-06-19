@@ -105,7 +105,7 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   }
 
-  setInterval( () => render(), 500);
+  setInterval( () => render(), 250);
 // =============================================================================
 
   canvasEl.addEventListener('click', (e) => {

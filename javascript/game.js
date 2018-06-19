@@ -30,6 +30,9 @@ class Game {
     this.pieces = {};
     this.selectedPiece = null;
 
+    // this.board = this.board.clearRows.bind(this);
+    // this.board = this.board.clearColumns.bind(this);
+
   }
 
   receivePieces() {
@@ -44,8 +47,8 @@ class Game {
   }
 
   clearTiles() {
-    this.score += this.board.clearRows();
     this.score += this.board.clearColumns();
+    this.score += this.board.clearRows();
   }
 
   pieceAction(num) {
@@ -69,17 +72,22 @@ class Game {
   }
 
   placePiece(coor) {
-    if (this.selectedPiece) {
+    if (this.selectedPiece && this.board.is_validMove(coor, this.selectedPiece)) {
       this.board.placePiece(coor, this.selectedPiece);
       this.score += this.selectedPiece.value;
       this.selectedPiece = null;
 
       this.clearTiles();
+
+      if (Object.values(this.pieces).every(this.isNull)) {
+        this.receivePieces();
+      };
+
+
+    } else {
+      window.alert("invalid move!")
     }
 
-    if (Object.values(this.pieces).every(this.isNull)) {
-      this.receivePieces();
-    };
 
 
   }
