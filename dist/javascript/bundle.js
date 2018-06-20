@@ -366,30 +366,6 @@ __webpack_require__.r(__webpack_exports__);
 var board = new _board__WEBPACK_IMPORTED_MODULE_0__["default"]();
 var game = new _game__WEBPACK_IMPORTED_MODULE_1__["default"](board);
 
-var one = new _pieces_one__WEBPACK_IMPORTED_MODULE_2__["default"]();
-var square = new _pieces_square__WEBPACK_IMPORTED_MODULE_5__["default"]();
-var bigsquare = new _pieces_big_square__WEBPACK_IMPORTED_MODULE_6__["default"]();
-var longhoriz = new _pieces_long_horiz__WEBPACK_IMPORTED_MODULE_7__["default"]();
-var longvert = new _pieces_long_vert__WEBPACK_IMPORTED_MODULE_8__["default"]();
-var test = new _pieces_three__WEBPACK_IMPORTED_MODULE_4__["Three4"]();
-//
-
-// board.placePiece([5,3], one);
-// board.placePiece([1,0], square);
-// board.placePiece([1,2], square);
-// board.placePiece([1,4], square);
-// board.placePiece([1,6], square);
-// board.placePiece([4,0], square);
-// board.placePiece([5,5], test);
-// board.placePiece([6,0], longhoriz);
-// board.placePiece([6,1], longhoriz);
-// board.placePiece([0,0], longvert);
-// board.placePiece([3,0], longvert);
-// board.placePiece([0,4], longvert);
-
-// board.clearColumns();
-// board.clearRows();
-
 game.receivePieces();
 
 
@@ -404,6 +380,8 @@ document.addEventListener("DOMContentLoaded", () => {
 
 
 // render game ===============================================================
+var shiftColors = 0;
+
   const render = () => {
     var ctx = canvasEl.getContext("2d");
 
@@ -419,9 +397,11 @@ document.addEventListener("DOMContentLoaded", () => {
 
         if (board.grid[i][j] === 0) {
           ctx.fillStyle = "white";
+        } else if (shiftColors%8 === 0) {
+          ctx.fillStyle = board.grid[i][j].color;
+          // ctx.fillStyle = "silver";
         } else {
           ctx.fillStyle = "dark" + board.grid[i][j].color;
-          // ctx.fillStyle = "silver";
         }
 
         ctx.fillRect(((i*45) + 150), (j*45) + 75, 45, 45);
@@ -453,9 +433,12 @@ document.addEventListener("DOMContentLoaded", () => {
         }
       }
     }
+
+    shiftColors++;
+    // console.log(shiftColors);
   }
 
-  setInterval( () => render(), 250);
+  setInterval( () => render(), 350);
 // =============================================================================
 
   canvasEl.addEventListener('click', (e) => {

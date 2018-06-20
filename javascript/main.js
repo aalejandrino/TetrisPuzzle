@@ -16,30 +16,6 @@ import { Jay1, Jay2, Jay3, Jay4 } from './pieces/jay';
 var board = new Board();
 var game = new Game(board);
 
-var one = new One();
-var square = new Square();
-var bigsquare = new BigSquare();
-var longhoriz = new LongHoriz();
-var longvert = new LongVert();
-var test = new Three4();
-//
-
-// board.placePiece([5,3], one);
-// board.placePiece([1,0], square);
-// board.placePiece([1,2], square);
-// board.placePiece([1,4], square);
-// board.placePiece([1,6], square);
-// board.placePiece([4,0], square);
-// board.placePiece([5,5], test);
-// board.placePiece([6,0], longhoriz);
-// board.placePiece([6,1], longhoriz);
-// board.placePiece([0,0], longvert);
-// board.placePiece([3,0], longvert);
-// board.placePiece([0,4], longvert);
-
-// board.clearColumns();
-// board.clearRows();
-
 game.receivePieces();
 
 
@@ -54,6 +30,8 @@ document.addEventListener("DOMContentLoaded", () => {
 
 
 // render game ===============================================================
+var shiftColors = 0;
+
   const render = () => {
     var ctx = canvasEl.getContext("2d");
 
@@ -69,9 +47,11 @@ document.addEventListener("DOMContentLoaded", () => {
 
         if (board.grid[i][j] === 0) {
           ctx.fillStyle = "white";
+        } else if (shiftColors%8 === 0) {
+          ctx.fillStyle = board.grid[i][j].color;
+          // ctx.fillStyle = "silver";
         } else {
           ctx.fillStyle = "dark" + board.grid[i][j].color;
-          // ctx.fillStyle = "silver";
         }
 
         ctx.fillRect(((i*45) + 150), (j*45) + 75, 45, 45);
@@ -103,9 +83,12 @@ document.addEventListener("DOMContentLoaded", () => {
         }
       }
     }
+
+    shiftColors++;
+    // console.log(shiftColors);
   }
 
-  setInterval( () => render(), 250);
+  setInterval( () => render(), 350);
 // =============================================================================
 
   canvasEl.addEventListener('click', (e) => {
