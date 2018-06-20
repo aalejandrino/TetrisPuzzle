@@ -54,8 +54,11 @@ class Game {
   pieceAction(num) {
     if (this.pieces[num]) {
       this.selectPiece(num);
+      let element = document.getElementById("canvas");
+      element.classList.add("hideMouse");
     } else if (this.pieces[num] === null) {
       this.returnPiece(num);
+      element.classList.remove("hideMouse");
     }
   }
 
@@ -83,6 +86,8 @@ class Game {
         this.receivePieces();
       };
 
+      let element = document.getElementById("canvas");
+      element.classList.remove("hideMouse");
 
     } else {
       window.alert("invalid move!")

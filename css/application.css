@@ -116,3 +116,15 @@ header h1 {
   background-color: #696969;
   border: 1px solid grey;
 }
+
+.canvas:hover {
+  cursor: pointer;
+}
+
+.hideMouse:hover {
+  cursor: none;
+}
+
+#background-canvas {
+
+}

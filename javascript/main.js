@@ -16,6 +16,8 @@ import { Jay1, Jay2, Jay3, Jay4 } from './pieces/jay';
 var board = new Board();
 var game = new Game(board);
 
+window.game = game;
+
 game.receivePieces();
 
 
@@ -47,7 +49,7 @@ var shiftColors = 0;
 
         if (board.grid[i][j] === 0) {
           ctx.fillStyle = "white";
-        } else if (shiftColors%8 === 0) {
+        } else if (shiftColors%14 === 0) {
           ctx.fillStyle = board.grid[i][j].color;
           // ctx.fillStyle = "silver";
         } else {
@@ -86,27 +88,55 @@ var shiftColors = 0;
 
     shiftColors++;
     // console.log(shiftColors);
+
+    canvasEl.addEventListener('mousemove', function(e) {
+      let offsetX = e.offsetX || offsetX;
+      let offsetY = e.offsetY || offsetY;
+
+      window.offsetX = offsetX;
+      window.offsetY = offsetY;
+      // console.log(offsetX + ' ' + offsetY);
+
+    });
+
+    if (game.selectedPiece) {
+      // let ctx = canvasEl.getContext("2d");
+      for (let i = 0; i < game.selectedPiece.tiles.length; i++) {
+        for (let j = 0; j < game.selectedPiece.tiles[0].length; j++) {
+
+          if (game.selectedPiece.tiles[i][j] === 0) {
+            continue;
+          } else {
+            ctx.fillStyle = game.selectedPiece.tiles[i][j].color;
+            ctx.fillRect(offsetX - 22 + (i*45), offsetY - 22 + (j*45), 45, 45);
+          }
+        }
+      }
+
+    }
+
+
   }
 
-  setInterval( () => render(), 350);
+  setInterval( () => render(), 100);
 // =============================================================================
 
-  canvasEl.addEventListener('click', (e) => {
-    console.log(e.pageX + ',' + e.pageY);
-    // console.log(e);
-
 // select pieces ===============================================================
-    if (e.pageY > 650 && e.pageY < 750) {
-      if (e.pageX > 310 && e.pageX < 450) {
+  canvasEl.addEventListener('click', (e) => {
+    // console.log(e.pageX + ',' + e.pageY);
+    console.log(e.offsetX + ',' + e.offsetY);
+
+    if (e.offsetY > 550 && e.offsetY < 700) {
+      if (e.offsetX > 40 && e.offsetX < 175) {
         game.pieceAction(0);
         // console.log(game.pieces);
-      } else if (e.pageX > 500 && e.pageX < 640) {
+      } else if (e.offsetX > 225 && e.offsetX < 360) {
         game.pieceAction(1);
         // console.log(game.pieces);
-      } else if (e.pageX > 685 && e.pageX < 825) {
+      } else if (e.offsetX > 415 && e.offsetX < 550) {
         game.pieceAction(2);
         // console.log(game.pieces);
-      } else if (e.pageX > 875 && e.pageX < 1015) {
+      } else if (e.offsetX > 600 && e.offsetX < 740) {
         game.pieceAction(3);
         // console.log(game.pieces);
       }
@@ -114,12 +144,12 @@ var shiftColors = 0;
 // =============================================================================
 
 // place pieces on board
-  if (e.pageX > 425 && e.pageX < 875 && e.pageY > 175 && e.pageY < 625) {
+  if (e.offsetX > 150 && e.offsetX < 600 && e.offsetY > 75 && e.offsetY < 525) {
     // console.log("you clicked on the board!")
 
     if (game.selectedPiece) {
-      let x = Math.floor((e.pageX - 425)/45);
-      let y = Math.floor((e.pageY - 175)/45);
+      let x = Math.floor((e.offsetX - 150)/45);
+      let y = Math.floor((e.offsetY - 75)/45);
       game.placePiece([x,y]);
       // console.log("you placed a piece!");
     } else {
@@ -131,11 +161,14 @@ var shiftColors = 0;
   }, false);
 
 
+  // track mouse cursor ========================================================
+
+
 });
 
-// ======================================================================
+// ===========================================================================
 
 
 // canvasEl.addEventListener('click',function(evt){
-// alert(evt.clientX + ',' + evt.clientY);
+// alert(evt.offsetX + ',' + evt.clientY);
 // },false);
