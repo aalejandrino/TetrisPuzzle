@@ -16,8 +16,7 @@ import { Jay1, Jay2, Jay3, Jay4 } from './pieces/jay';
 var board = new Board();
 var game = new Game(board);
 
-window.game = game;
-
+// window.game = game;
 game.receivePieces();
 
 
@@ -49,7 +48,7 @@ var shiftColors = 0;
 
         if (board.grid[i][j] === 0) {
           ctx.fillStyle = "white";
-        } else if (shiftColors%14 === 0) {
+        } else if (shiftColors%20 === 0) {
           ctx.fillStyle = board.grid[i][j].color;
           // ctx.fillStyle = "silver";
         } else {
@@ -86,8 +85,12 @@ var shiftColors = 0;
       }
     }
 
-    shiftColors++;
-    // console.log(shiftColors);
+    if (shiftColors < 1000) {
+      shiftColors++;
+    } else {
+      shiftColors = 0;
+    }
+    console.log(shiftColors);
 
     canvasEl.addEventListener('mousemove', function(e) {
       let offsetX = e.offsetX || offsetX;
@@ -108,23 +111,25 @@ var shiftColors = 0;
             continue;
           } else {
             ctx.fillStyle = game.selectedPiece.tiles[i][j].color;
-            ctx.fillRect(offsetX - 22 + (i*45), offsetY - 22 + (j*45), 45, 45);
+            ctx.fillRect(offsetX - 22.5 + (i*45), offsetY - 22.5 + (j*45), 45, 45);
           }
         }
       }
 
     }
 
-
+    requestAnimationFrame( render );
   }
 
-  setInterval( () => render(), 100);
+  render();
+
+  // setInterval( () => render(), 50);
 // =============================================================================
 
 // select pieces ===============================================================
   canvasEl.addEventListener('click', (e) => {
     // console.log(e.pageX + ',' + e.pageY);
-    console.log(e.offsetX + ',' + e.offsetY);
+    // console.log(e.offsetX + ',' + e.offsetY);
 
     if (e.offsetY > 550 && e.offsetY < 700) {
       if (e.offsetX > 40 && e.offsetX < 175) {

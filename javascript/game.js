@@ -52,9 +52,10 @@ class Game {
   }
 
   pieceAction(num) {
+    let element = document.getElementById("canvas");
+
     if (this.pieces[num]) {
       this.selectPiece(num);
-      let element = document.getElementById("canvas");
       element.classList.add("hideMouse");
     } else if (this.pieces[num] === null) {
       this.returnPiece(num);
