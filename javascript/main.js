@@ -69,7 +69,7 @@ var shiftColors = 0;
       if (current_piece === null) {
         continue;
       } else {
-
+        
         for (let i = 0; i < current_piece.tiles.length; i++) {
           for (let j = 0; j < current_piece.tiles[0].length; j++) {
 
