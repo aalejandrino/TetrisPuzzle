@@ -113,7 +113,7 @@ header h1 {
 #canvas {
   width: 750px;
   height: 700px;
-  background-color: #696969;
+  background-color: grey;
   border: 1px solid grey;
 }
 

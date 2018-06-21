@@ -16,14 +16,17 @@ import { Jay1, Jay2, Jay3, Jay4 } from './pieces/jay';
 var board = new Board();
 var game = new Game(board);
 
+// var sound = new Audio("sound file path")
+// sound.play();
+
 // window.game = game;
 game.receivePieces();
 
 
 document.addEventListener("DOMContentLoaded", () => {
   console.log("Hey there and welcome to TetrisPuzzle");
-  window.game = game;
-  console.log(game.pieces);
+  // window.game = game;
+  // console.log(game.pieces);
 
   var canvasEl = document.getElementById("canvas");
   canvasEl.width = 750;
@@ -31,10 +34,12 @@ document.addEventListener("DOMContentLoaded", () => {
 
 
 // render game ===============================================================
-var shiftColors = 0;
+  var shiftColors = 0;
 
   const render = () => {
+    requestAnimationFrame( render );
     var ctx = canvasEl.getContext("2d");
+    ctx.clearRect(0, 0, canvasEl.width, canvasEl.height);
 
     ctx.fillStyle = "#696969";
     ctx.fillRect(0, 0, canvasEl.width, canvasEl.height);
@@ -48,7 +53,7 @@ var shiftColors = 0;
 
         if (board.grid[i][j] === 0) {
           ctx.fillStyle = "white";
-        } else if (shiftColors%20 === 0) {
+        } else if (shiftColors%15 === 0) {
           ctx.fillStyle = board.grid[i][j].color;
           // ctx.fillStyle = "silver";
         } else {
@@ -69,7 +74,7 @@ var shiftColors = 0;
       if (current_piece === null) {
         continue;
       } else {
-        
+
         for (let i = 0; i < current_piece.tiles.length; i++) {
           for (let j = 0; j < current_piece.tiles[0].length; j++) {
 
@@ -85,22 +90,15 @@ var shiftColors = 0;
       }
     }
 
-    if (shiftColors < 1000) {
+    if (shiftColors < 300) {
       shiftColors++;
     } else {
       shiftColors = 0;
     }
     console.log(shiftColors);
 
-    canvasEl.addEventListener('mousemove', function(e) {
-      let offsetX = e.offsetX || offsetX;
-      let offsetY = e.offsetY || offsetY;
+    // if ( shiftColors === 299 ) {ctx.clearRect(0, 0, canvasEl.width, canvasEl.height)};
 
-      window.offsetX = offsetX;
-      window.offsetY = offsetY;
-      // console.log(offsetX + ' ' + offsetY);
-
-    });
 
     if (game.selectedPiece) {
       // let ctx = canvasEl.getContext("2d");
@@ -111,18 +109,30 @@ var shiftColors = 0;
             continue;
           } else {
             ctx.fillStyle = game.selectedPiece.tiles[i][j].color;
-            ctx.fillRect(offsetX - 22.5 + (i*45), offsetY - 22.5 + (j*45), 45, 45);
+            ctx.fillRect(window.offsetX - 22.5 + (i*45), window.offsetY - 22.5 + (j*45), 45, 45);
           }
         }
       }
 
     }
 
-    requestAnimationFrame( render );
+    // ctx.clearRect(0, 0, canvasEl.width, canvasEl.height);
+
+
+    // requestAnimationFrame( render );
   }
 
   render();
 
+  canvasEl.addEventListener('mousemove', function(e) {
+    let offsetX = e.offsetX || offsetX;
+    let offsetY = e.offsetY || offsetY;
+
+    window.offsetX = offsetX;
+    window.offsetY = offsetY;
+    // console.log(offsetX + ' ' + offsetY);
+
+  });
   // setInterval( () => render(), 50);
 // =============================================================================
 
