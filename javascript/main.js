@@ -129,7 +129,6 @@ document.addEventListener("DOMContentLoaded", () => {
     requestAnimationFrame( render );
   }
 
-
   const beginGame = () => {
     game.started = true;
     game.receivePieces();
@@ -190,7 +189,7 @@ document.addEventListener("DOMContentLoaded", () => {
 // select pieces ===============================================================
   canvasEl.addEventListener('click', (e) => {
     // console.log(e.pageX + ',' + e.pageY);
-    // console.log(e.offsetX + ',' + e.offsetY);
+    console.log(e.offsetX + ',' + e.offsetY);
     if (!game.started && (e.offsetY > 400 && e.offsetY < 675)
                       && (e.offsetX > 250 && e.offsetX < 450)) {
       beginGame();
