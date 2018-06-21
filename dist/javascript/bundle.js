@@ -406,7 +406,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
         if (board.grid[i][j] === 0) {
           ctx.fillStyle = "white";
-        } else if (shiftColors%40 === 0) {
+        } else if (shiftColors > 100) {
           ctx.fillStyle = board.grid[i][j].color;
           // ctx.fillStyle = "silver";
         } else {
@@ -441,11 +441,13 @@ document.addEventListener("DOMContentLoaded", () => {
       }
     }
 
-    if (shiftColors < 300) {
+    if (shiftColors < 201) {
       shiftColors++;
     } else {
       shiftColors = 0;
     }
+
+    // console.log(shiftColors);
 
 
     if (game.selectedPiece) {
