@@ -1,3 +1,5 @@
+//theme credited to Original Tetris
+
 import Board from './board';
 import Game from './game';
 import One from './pieces/one';
@@ -20,7 +22,7 @@ var game = new Game(board);
 // sound.play();
 
 // window.game = game;
-game.receivePieces();
+
 
 
 
@@ -39,8 +41,9 @@ document.addEventListener("DOMContentLoaded", () => {
 // render game ===============================================================
 
   const render = () => {
-    requestAnimationFrame( render );
+    // requestAnimationFrame( render );
     ctx.clearRect(0, 0, canvasEl.width, canvasEl.height);
+    ctx.strokeStyle = "black";
 
     ctx.fillStyle = "black";
     ctx.fillRect(0,0, canvasEl.width, canvasEl.height);
@@ -122,20 +125,54 @@ document.addEventListener("DOMContentLoaded", () => {
         }
       }
     }
+
+    requestAnimationFrame( render );
   }
 
 
   const beginGame = () => {
     game.started = true;
+    game.receivePieces();
     render();
   }
 
   const renderMenu = (ctx) => {
-    ctx.fillStyle = "white";
-    ctx.fillRect(0,0, canvasEl.width, canvasEl.height);
     ctx.fillStyle = "black";
-    ctx.font = "100px Comic San";
-    ctx.fillText(`START`, 200, 625);
+    ctx.fillRect(0,0, canvasEl.width, canvasEl.height);
+    // ctx.font = "60px Comic San";
+    // ctx.fillText(`START`, 300, 625);
+    ctx.fillStyle = "blue";
+    ctx.strokeStyle = "silver";
+    ctx.beginPath();
+    ctx.arc(375,625,100,0,2*Math.PI);
+    ctx.fill();
+    ctx.stroke();
+
+    ctx.fillStyle = "black";
+    ctx.beginPath();
+    ctx.moveTo(335, 560);
+    ctx.lineTo(335, 690);
+    ctx.lineTo(445, 625);
+    ctx.fill();
+    ctx.stroke();
+
+    ctx.fillStyle = "lightblue";
+    ctx.beginPath();
+    ctx.arc(675,675,50,0,2*Math.PI);
+    ctx.fill();
+    ctx.stroke();
+
+    ctx.fillStyle = "black";
+    ctx.font = "72px Comic San";
+    ctx.fillText(`?`, 660, 695);
+
+    var img = new Image();
+    img.onload = function () {
+      ctx.drawImage(img, -140, 0);
+    }
+
+    img.src = "images/tetris-title.png";
+
   }
 
   renderMenu(ctx);
@@ -154,7 +191,8 @@ document.addEventListener("DOMContentLoaded", () => {
   canvasEl.addEventListener('click', (e) => {
     // console.log(e.pageX + ',' + e.pageY);
     // console.log(e.offsetX + ',' + e.offsetY);
-    if (!game.started && (e.offsetY > 550 && e.offsetY < 700)) {
+    if (!game.started && (e.offsetY > 400 && e.offsetY < 675)
+                      && (e.offsetX > 250 && e.offsetX < 450)) {
       beginGame();
     }
 
