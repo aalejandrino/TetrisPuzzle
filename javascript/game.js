@@ -106,7 +106,7 @@ class Game {
   checkGameOver() {
     let pieces = Object.values(this.pieces).filter((obj) => obj);
 
-    if (pieces.length === 0) {
+    if (pieces.length === 0 || !!this.selectedPiece) {
       return false;
     };
 

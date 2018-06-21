@@ -342,7 +342,7 @@ class Game {
   checkGameOver() {
     let pieces = Object.values(this.pieces).filter((obj) => obj);
 
-    if (pieces.length === 0) {
+    if (pieces.length === 0 || !!this.selectedPiece) {
       return false;
     };
 
@@ -403,8 +403,11 @@ __webpack_require__.r(__webpack_exports__);
 var board = new _board__WEBPACK_IMPORTED_MODULE_0__["default"]();
 var game = new _game__WEBPACK_IMPORTED_MODULE_1__["default"](board);
 
-// var sound = new Audio("sound file path")
-// sound.play();
+var music1 = new Audio("./sound/Tetris.mp3");
+// window.music1 = music1;
+
+
+// music1.play();
 
 // window.game = game;
 
@@ -415,6 +418,7 @@ document.addEventListener("DOMContentLoaded", () => {
   console.log("Hey there and welcome to TetrisPuzzle");
   // window.game = game;
   // console.log(game.pieces);
+
 
   var canvasEl = document.getElementById("canvas");
   canvasEl.width = 750;
@@ -435,6 +439,11 @@ document.addEventListener("DOMContentLoaded", () => {
 
     ctx.fillStyle = "lightgrey";
     ctx.fillRect(0,525, canvasEl.width, 175);
+
+    ctx.fillStyle = "lightblue";
+    ctx.beginPath();
+    ctx.arc(50,50,25,0,2*Math.PI);
+    ctx.fill();
 
     ctx.fillStyle = "white";
     ctx.font = "42px Comic San";
@@ -517,6 +526,14 @@ document.addEventListener("DOMContentLoaded", () => {
   const beginGame = () => {
     game.started = true;
     game.receivePieces();
+
+    music1.addEventListener('ended', function() {
+      this.currentTime = this.duration;
+      this.play();
+    }, false);
+    music1.play();
+
+
     render();
   }
 
@@ -574,7 +591,7 @@ document.addEventListener("DOMContentLoaded", () => {
 // select pieces ===============================================================
   canvasEl.addEventListener('click', (e) => {
     // console.log(e.pageX + ',' + e.pageY);
-    console.log(e.offsetX + ',' + e.offsetY);
+    // console.log(e.offsetX + ',' + e.offsetY);
     if (!game.started && (e.offsetY > 400 && e.offsetY < 675)
                       && (e.offsetX > 250 && e.offsetX < 450)) {
       beginGame();
@@ -685,7 +702,6 @@ class Ell1 {
   constructor() {
     this.name = 'ell';
     this.value = 0;
-    this.value += 1;
 
     this.tiles = [
                   [this.fillPiece(), this.fillPiece(), this.fillPiece()],
@@ -694,6 +710,7 @@ class Ell1 {
   }
 
   fillPiece() {
+    this.value += 1;
     return (new _tile__WEBPACK_IMPORTED_MODULE_0__["default"]('green'))
   }
 

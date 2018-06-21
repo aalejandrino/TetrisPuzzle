@@ -4,7 +4,6 @@ export class Ell1 {
   constructor() {
     this.name = 'ell';
     this.value = 0;
-    this.value += 1;
 
     this.tiles = [
                   [this.fillPiece(), this.fillPiece(), this.fillPiece()],
@@ -13,6 +12,7 @@ export class Ell1 {
   }
 
   fillPiece() {
+    this.value += 1;
     return (new Tile('green'))
   }
 
