@@ -388,17 +388,18 @@ document.addEventListener("DOMContentLoaded", () => {
   canvasEl.width = 750;
   canvasEl.height = 700;
 
+  var ctx = canvasEl.getContext("2d");
+  var shiftColors = 0;
 
 // render game ===============================================================
-  var shiftColors = 0;
 
   const render = () => {
     requestAnimationFrame( render );
-    var ctx = canvasEl.getContext("2d");
     ctx.clearRect(0, 0, canvasEl.width, canvasEl.height);
+    // ctx.clearStyle(0, 0, canvasEl.width, canvasEl.height);
 
-    ctx.fillStyle = "#696969";
-    ctx.fillRect(0, 0, canvasEl.width, canvasEl.height);
+    // ctx.fillStyle = "#696969";
+    // ctx.fillRect(0, 0, canvasEl.width, canvasEl.height);
 
     ctx.fillStyle = "black";
     ctx.font = "42px Comic San";
@@ -409,19 +410,21 @@ document.addEventListener("DOMContentLoaded", () => {
 
         if (board.grid[i][j] === 0) {
           ctx.fillStyle = "white";
-        } else if (shiftColors%15 === 0) {
+        } else if (shiftColors%50 === 0) {
           ctx.fillStyle = board.grid[i][j].color;
           // ctx.fillStyle = "silver";
         } else {
+          // ctx.fillStyle = "silver";
           ctx.fillStyle = "dark" + board.grid[i][j].color;
         }
 
         ctx.fillRect(((i*45) + 150), (j*45) + 75, 45, 45);
-        ctx.rect(((i*45) + 150), (j*45) + 75, 45, 45);
+        // ctx.rect(((i*45) + 150), (j*45) + 75, 45, 45);
       }
     }
-    ctx.strokeStyle="#000000";
-    ctx.stroke();
+
+    // ctx.strokeStyle="#000000";
+    // ctx.stroke();
 
     // ctx.fillStyle = "blue";
     for (let n = 0; n < 4; n++) {
@@ -474,7 +477,8 @@ document.addEventListener("DOMContentLoaded", () => {
 
     // ctx.clearRect(0, 0, canvasEl.width, canvasEl.height);
 
-
+    // ctx.strokeStyle="#000000";
+    // ctx.stroke();
     // requestAnimationFrame( render );
   }
 
