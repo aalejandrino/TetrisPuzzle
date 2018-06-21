@@ -146,6 +146,18 @@ class Board {
     return true;
   }
 
+  check_forValidMoves(piece) {
+    for (let i = 0; i < 10; i++) {
+      for (let j = 0; j < 10; j++) {
+        if (this.is_validMove([i,j], piece)) {
+          return true;
+        }
+      }
+    }
+
+    return false;
+  }
+
   checkForTiles(el) {
     return el !== 0;
   }
@@ -253,6 +265,7 @@ class Game {
     this.board = board;
     this.pieces = {};
     this.selectedPiece = null;
+    this.started = false;
 
     // this.board = this.board.clearRows.bind(this);
     // this.board = this.board.clearColumns.bind(this);
@@ -318,12 +331,26 @@ class Game {
       window.alert("invalid move!")
     }
 
-
-
   }
 
   isNull(el) {
     return el === null;
+  }
+
+  checkGameOver() {
+    let pieces = Object.values(this.pieces).filter((obj) => obj);
+
+    if (pieces.length === 0) {
+      return false;
+    };
+
+    for (let i = 0; i < pieces.length; i++) {
+      if (this.board.check_forValidMoves(pieces[i])) {
+        return false;
+      };
+    };
+
+    return true;
   }
 
 }
@@ -379,6 +406,7 @@ var game = new _game__WEBPACK_IMPORTED_MODULE_1__["default"](board);
 game.receivePieces();
 
 
+
 document.addEventListener("DOMContentLoaded", () => {
   console.log("Hey there and welcome to TetrisPuzzle");
   // window.game = game;
@@ -386,7 +414,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
   var canvasEl = document.getElementById("canvas");
   canvasEl.width = 750;
-  canvasEl.height = 700;
+  canvasEl.height = 750;
 
   var ctx = canvasEl.getContext("2d");
   var shiftColors = 0;
@@ -398,6 +426,12 @@ document.addEventListener("DOMContentLoaded", () => {
     ctx.clearRect(0, 0, canvasEl.width, canvasEl.height);
 
     ctx.fillStyle = "black";
+    ctx.fillRect(0,0, canvasEl.width, canvasEl.height);
+
+    ctx.fillStyle = "lightgrey";
+    ctx.fillRect(0,525, canvasEl.width, 175);
+
+    ctx.fillStyle = "white";
     ctx.font = "42px Comic San";
     ctx.fillText(`Score: ${game.score}`, 250, 50);
 
@@ -445,9 +479,15 @@ document.addEventListener("DOMContentLoaded", () => {
       shiftColors++;
     } else {
       shiftColors = 0;
-    }
 
-    // console.log(shiftColors);
+
+      // check for losing condition every few seconds
+      if (game.checkGameOver()) {
+        alert("GAME OVER, NO VALID MOVES!! restart game");
+        console.log("GAME OVER, NO VALID MOVES!! restart game");
+      }
+
+    }
 
 
     if (game.selectedPiece) {
@@ -464,12 +504,24 @@ document.addEventListener("DOMContentLoaded", () => {
           }
         }
       }
-
     }
-
   }
 
-  render();
+
+  const beginGame = () => {
+    game.started = true;
+    render();
+  }
+
+  const renderMenu = (ctx) => {
+    ctx.fillStyle = "white";
+    ctx.fillRect(0,0, canvasEl.width, canvasEl.height);
+    ctx.fillStyle = "black";
+    ctx.font = "100px Comic San";
+    ctx.fillText(`START`, 200, 625);
+  }
+
+  renderMenu(ctx);
 
   canvasEl.addEventListener('mousemove', function(e) {
     let offsetX = e.offsetX || offsetX;
@@ -477,16 +529,17 @@ document.addEventListener("DOMContentLoaded", () => {
 
     window.offsetX = offsetX;
     window.offsetY = offsetY;
-    // console.log(offsetX + ' ' + offsetY);
-
   });
-  // setInterval( () => render(), 50);
+
 // =============================================================================
 
 // select pieces ===============================================================
   canvasEl.addEventListener('click', (e) => {
     // console.log(e.pageX + ',' + e.pageY);
     // console.log(e.offsetX + ',' + e.offsetY);
+    if (!game.started && (e.offsetY > 550 && e.offsetY < 700)) {
+      beginGame();
+    }
 
     if (e.offsetY > 550 && e.offsetY < 700) {
       if (e.offsetX > 40 && e.offsetX < 175) {
@@ -524,7 +577,6 @@ document.addEventListener("DOMContentLoaded", () => {
 
 
   // track mouse cursor ========================================================
-
 
 });
 

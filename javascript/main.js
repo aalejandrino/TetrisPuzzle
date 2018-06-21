@@ -23,6 +23,7 @@ var game = new Game(board);
 game.receivePieces();
 
 
+
 document.addEventListener("DOMContentLoaded", () => {
   console.log("Hey there and welcome to TetrisPuzzle");
   // window.game = game;
@@ -30,7 +31,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
   var canvasEl = document.getElementById("canvas");
   canvasEl.width = 750;
-  canvasEl.height = 700;
+  canvasEl.height = 750;
 
   var ctx = canvasEl.getContext("2d");
   var shiftColors = 0;
@@ -42,6 +43,12 @@ document.addEventListener("DOMContentLoaded", () => {
     ctx.clearRect(0, 0, canvasEl.width, canvasEl.height);
 
     ctx.fillStyle = "black";
+    ctx.fillRect(0,0, canvasEl.width, canvasEl.height);
+
+    ctx.fillStyle = "lightgrey";
+    ctx.fillRect(0,525, canvasEl.width, 175);
+
+    ctx.fillStyle = "white";
     ctx.font = "42px Comic San";
     ctx.fillText(`Score: ${game.score}`, 250, 50);
 
@@ -89,9 +96,15 @@ document.addEventListener("DOMContentLoaded", () => {
       shiftColors++;
     } else {
       shiftColors = 0;
-    }
 
-    // console.log(shiftColors);
+
+      // check for losing condition every few seconds
+      if (game.checkGameOver()) {
+        alert("GAME OVER, NO VALID MOVES!! restart game");
+        console.log("GAME OVER, NO VALID MOVES!! restart game");
+      }
+
+    }
 
 
     if (game.selectedPiece) {
@@ -108,12 +121,24 @@ document.addEventListener("DOMContentLoaded", () => {
           }
         }
       }
-
     }
-
   }
 
-  render();
+
+  const beginGame = () => {
+    game.started = true;
+    render();
+  }
+
+  const renderMenu = (ctx) => {
+    ctx.fillStyle = "white";
+    ctx.fillRect(0,0, canvasEl.width, canvasEl.height);
+    ctx.fillStyle = "black";
+    ctx.font = "100px Comic San";
+    ctx.fillText(`START`, 200, 625);
+  }
+
+  renderMenu(ctx);
 
   canvasEl.addEventListener('mousemove', function(e) {
     let offsetX = e.offsetX || offsetX;
@@ -121,16 +146,17 @@ document.addEventListener("DOMContentLoaded", () => {
 
     window.offsetX = offsetX;
     window.offsetY = offsetY;
-    // console.log(offsetX + ' ' + offsetY);
-
   });
-  // setInterval( () => render(), 50);
+
 // =============================================================================
 
 // select pieces ===============================================================
   canvasEl.addEventListener('click', (e) => {
     // console.log(e.pageX + ',' + e.pageY);
     // console.log(e.offsetX + ',' + e.offsetY);
+    if (!game.started && (e.offsetY > 550 && e.offsetY < 700)) {
+      beginGame();
+    }
 
     if (e.offsetY > 550 && e.offsetY < 700) {
       if (e.offsetX > 40 && e.offsetX < 175) {
@@ -168,7 +194,6 @@ document.addEventListener("DOMContentLoaded", () => {
 
 
   // track mouse cursor ========================================================
-
 
 });
 

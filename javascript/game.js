@@ -29,6 +29,7 @@ class Game {
     this.board = board;
     this.pieces = {};
     this.selectedPiece = null;
+    this.started = false;
 
     // this.board = this.board.clearRows.bind(this);
     // this.board = this.board.clearColumns.bind(this);
@@ -94,12 +95,26 @@ class Game {
       window.alert("invalid move!")
     }
 
-
-
   }
 
   isNull(el) {
     return el === null;
+  }
+
+  checkGameOver() {
+    let pieces = Object.values(this.pieces).filter((obj) => obj);
+
+    if (pieces.length === 0) {
+      return false;
+    };
+
+    for (let i = 0; i < pieces.length; i++) {
+      if (this.board.check_forValidMoves(pieces[i])) {
+        return false;
+      };
+    };
+
+    return true;
   }
 
 }
