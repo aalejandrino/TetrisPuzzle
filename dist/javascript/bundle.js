@@ -396,10 +396,6 @@ document.addEventListener("DOMContentLoaded", () => {
   const render = () => {
     requestAnimationFrame( render );
     ctx.clearRect(0, 0, canvasEl.width, canvasEl.height);
-    // ctx.clearStyle(0, 0, canvasEl.width, canvasEl.height);
-
-    // ctx.fillStyle = "#696969";
-    // ctx.fillRect(0, 0, canvasEl.width, canvasEl.height);
 
     ctx.fillStyle = "black";
     ctx.font = "42px Comic San";
@@ -410,7 +406,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
         if (board.grid[i][j] === 0) {
           ctx.fillStyle = "white";
-        } else if (shiftColors%50 === 0) {
+        } else if (shiftColors%40 === 0) {
           ctx.fillStyle = board.grid[i][j].color;
           // ctx.fillStyle = "silver";
         } else {
@@ -419,14 +415,10 @@ document.addEventListener("DOMContentLoaded", () => {
         }
 
         ctx.fillRect(((i*45) + 150), (j*45) + 75, 45, 45);
-        // ctx.rect(((i*45) + 150), (j*45) + 75, 45, 45);
+        ctx.strokeRect(((i*45) + 150), (j*45) + 75, 45, 45);
       }
     }
 
-    // ctx.strokeStyle="#000000";
-    // ctx.stroke();
-
-    // ctx.fillStyle = "blue";
     for (let n = 0; n < 4; n++) {
       let current_piece = game.pieces[n];
 
@@ -442,7 +434,7 @@ document.addEventListener("DOMContentLoaded", () => {
             } else {
               ctx.fillStyle = current_piece.tiles[i][j].color;
               ctx.fillRect((i*45) + 40 + (n*187.5), (j*45) + 555, 45, 45)
-              // ctx.rect((i*45) + 40 + (n*187.5), (j*45) + 555, 45, 45) //rendering error?
+              ctx.strokeRect((i*45) + 40 + (n*187.5), (j*45) + 555, 45, 45)
             };
           }
         }
@@ -454,13 +446,10 @@ document.addEventListener("DOMContentLoaded", () => {
     } else {
       shiftColors = 0;
     }
-    console.log(shiftColors);
-
-    // if ( shiftColors === 299 ) {ctx.clearRect(0, 0, canvasEl.width, canvasEl.height)};
 
 
     if (game.selectedPiece) {
-      // let ctx = canvasEl.getContext("2d");
+
       for (let i = 0; i < game.selectedPiece.tiles.length; i++) {
         for (let j = 0; j < game.selectedPiece.tiles[0].length; j++) {
 
@@ -469,17 +458,13 @@ document.addEventListener("DOMContentLoaded", () => {
           } else {
             ctx.fillStyle = game.selectedPiece.tiles[i][j].color;
             ctx.fillRect(window.offsetX - 22.5 + (i*45), window.offsetY - 22.5 + (j*45), 45, 45);
+            ctx.strokeRect(window.offsetX - 22.5 + (i*45), window.offsetY - 22.5 + (j*45), 45, 45);
           }
         }
       }
 
     }
 
-    // ctx.clearRect(0, 0, canvasEl.width, canvasEl.height);
-
-    // ctx.strokeStyle="#000000";
-    // ctx.stroke();
-    // requestAnimationFrame( render );
   }
 
   render();
