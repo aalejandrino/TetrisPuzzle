@@ -100,7 +100,8 @@ class Board {
   constructor() {
     // this.ctx = ctx; //for rendering?
     this.createGrid();
-
+    
+    //sound effects
     this.remove_snd = new Audio("./sound/line-removal4.mp3");
   }
 
@@ -182,30 +183,30 @@ class Board {
     if (score) {
       this.remove_snd.play();
     }
-    
+
     return score;
   }
-  
+
   clearRow(rowNum) {
     for (let i = 0; i < 10; i++) {
       this.grid[i][rowNum] = 0;
     }
   }
-  
+
   clearColumns() {
     let score = 0;
-    
+
     this.grid.forEach(column => {
       if (column.every(this.checkForTiles)) {
         column.fill(0);
         score += 10;
       }
     })
-    
+
     if (score) {
       this.remove_snd.play();
     }
-    
+
     return score;
   }
 
@@ -279,8 +280,7 @@ class Game {
     this.started = false;
     this.atmenu = true;
 
-    // this.board = this.board.clearRows.bind(this);
-    // this.board = this.board.clearColumns.bind(this);
+    //sound effects
     this.select_snd = new Audio("./sound/select.mp3");
     this.drop_snd = new Audio("./sound/line-drop.mp3");
   }
@@ -397,7 +397,7 @@ var board = new _board__WEBPACK_IMPORTED_MODULE_0__["default"]();
 var game = new _game__WEBPACK_IMPORTED_MODULE_1__["default"](board);
 
 
-// music and 
+// music and sound effects
 var music1 = new Audio("./sound/tetris.mp3");
 music1.volume = 0.5;
 
@@ -649,7 +649,7 @@ document.addEventListener("DOMContentLoaded", () => {
       }
     }
 
-    if (e.offsetY > 550 && e.offsetY < 700) { 
+    if (e.offsetY > 550 && e.offsetY < 700) {
       if (e.offsetX > 40 && e.offsetX < 175) {
         game.pieceAction(0);
         // console.log(game.pieces);
@@ -663,7 +663,7 @@ document.addEventListener("DOMContentLoaded", () => {
         game.pieceAction(3);
         // console.log(game.pieces);
       }
-      
+
     }
 // =============================================================================
 

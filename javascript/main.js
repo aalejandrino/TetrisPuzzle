@@ -9,7 +9,7 @@ var board = new Board();
 var game = new Game(board);
 
 
-// music and 
+// music and sound effects
 var music1 = new Audio("./sound/tetris.mp3");
 music1.volume = 0.5;
 
@@ -261,7 +261,7 @@ document.addEventListener("DOMContentLoaded", () => {
       }
     }
 
-    if (e.offsetY > 550 && e.offsetY < 700) { 
+    if (e.offsetY > 550 && e.offsetY < 700) {
       if (e.offsetX > 40 && e.offsetX < 175) {
         game.pieceAction(0);
         // console.log(game.pieces);
@@ -275,7 +275,7 @@ document.addEventListener("DOMContentLoaded", () => {
         game.pieceAction(3);
         // console.log(game.pieces);
       }
-      
+
     }
 // =============================================================================
 

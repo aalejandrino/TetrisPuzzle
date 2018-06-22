@@ -34,8 +34,7 @@ class Game {
     this.started = false;
     this.atmenu = true;
 
-    // this.board = this.board.clearRows.bind(this);
-    // this.board = this.board.clearColumns.bind(this);
+    //sound effects
     this.select_snd = new Audio("./sound/select.mp3");
     this.drop_snd = new Audio("./sound/line-drop.mp3");
   }
