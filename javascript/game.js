@@ -36,7 +36,8 @@ class Game {
 
     // this.board = this.board.clearRows.bind(this);
     // this.board = this.board.clearColumns.bind(this);
-
+    this.select_snd = new Audio("./sound/select.mp3");
+    this.drop_snd = new Audio("./sound/line-drop.mp3");
   }
 
   receivePieces() {
@@ -65,6 +66,7 @@ class Game {
       this.returnPiece(num);
       element.classList.remove("hideMouse");
     }
+    this.select_snd.play();
   }
 
   selectPiece(num) {
@@ -83,6 +85,7 @@ class Game {
     if (this.selectedPiece && this.board.is_validMove(coor, this.selectedPiece)) {
       this.board.placePiece(coor, this.selectedPiece);
       this.score += this.selectedPiece.value;
+      this.drop_snd.play();
       this.selectedPiece = null;
 
       this.clearTiles();

@@ -4,6 +4,7 @@ class Board {
     // this.ctx = ctx; //for rendering?
     this.createGrid();
 
+    this.remove_snd = new Audio("./sound/line-removal4.mp3");
   }
 
   createGrid() {
@@ -81,25 +82,33 @@ class Board {
       }
     }
 
+    if (score) {
+      this.remove_snd.play();
+    }
+    
     return score;
   }
-
+  
   clearRow(rowNum) {
     for (let i = 0; i < 10; i++) {
       this.grid[i][rowNum] = 0;
     }
   }
-
+  
   clearColumns() {
     let score = 0;
-
+    
     this.grid.forEach(column => {
       if (column.every(this.checkForTiles)) {
         column.fill(0);
         score += 10;
       }
     })
-
+    
+    if (score) {
+      this.remove_snd.play();
+    }
+    
     return score;
   }
 

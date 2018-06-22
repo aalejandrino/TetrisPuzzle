@@ -2,33 +2,19 @@
 
 import Board from './board';
 import Game from './game';
-import One from './pieces/one';
-import { Two1, Two2 } from './pieces/two';
-import { Three1, Three2, Three3, Three4 } from './pieces/three';
-import Square from './pieces/square';
-import BigSquare from './pieces/big_square';
-import LongHoriz from './pieces/long_horiz';
-import LongVert from './pieces/long_vert';
-import { Zee1, Zee2 } from './pieces/zee';
-import { Ell1, Ell2, Ell3, Ell4 } from './pieces/ell';
-import { Jay1, Jay2, Jay3, Jay4 } from './pieces/jay';
 
 // Initialize canvas and display splash
 
 var board = new Board();
 var game = new Game(board);
 
+
+// music and 
 var music1 = new Audio("./sound/tetris.mp3");
 music1.volume = 0.5;
-// window.music1 = music1;
 
-
-// music1.play();
-
-// window.game = game;
-
-
-
+var start_snd = new Audio("./sound/start.mp3");
+var gameover_snd = new Audio("./sound/gameover.mp3");
 
 document.addEventListener("DOMContentLoaded", () => {
   console.log("Hey there and welcome to TetrisPuzzle");
@@ -61,7 +47,7 @@ document.addEventListener("DOMContentLoaded", () => {
     // ctx.arc(50,50,25,0,2*Math.PI);
     // ctx.fill();
     ctx.font = "72px Comic San";
-    ctx.fillText(`♫`, -10, 50);
+    ctx.fillText(`♫`, 0, 58);
 
 
     ctx.fillStyle = "white";
@@ -116,8 +102,10 @@ document.addEventListener("DOMContentLoaded", () => {
 
       // check for losing condition every few seconds
       if (game.checkGameOver()) {
-        alert("GAME OVER, NO VALID MOVES!! restart game");
-        console.log("GAME OVER, NO VALID MOVES!! restart game");
+        music1.pause();
+        gameover_snd.play();
+
+        setTimeout( () => alert("GAME OVER, NO VALID MOVES!! Restart the game (refresh page)"), 500);
       }
 
     }
@@ -150,6 +138,7 @@ document.addEventListener("DOMContentLoaded", () => {
       this.currentTime = this.duration;
       this.play();
     }, false);
+    start_snd.play();
     music1.play();
 
 
@@ -251,7 +240,7 @@ document.addEventListener("DOMContentLoaded", () => {
     // console.log(e.pageX + ',' + e.pageY);
     console.log(e.offsetX + ',' + e.offsetY);
 
-    if (e.offsetY < 56 && e.offsetX < 41) {
+    if (e.offsetY < 63 && e.offsetX < 50) {
       if (music1.paused) {
         music1.play();
       } else {
@@ -277,7 +266,7 @@ document.addEventListener("DOMContentLoaded", () => {
       }
     }
 
-    if (e.offsetY > 550 && e.offsetY < 700) {
+    if (e.offsetY > 550 && e.offsetY < 700) { 
       if (e.offsetX > 40 && e.offsetX < 175) {
         game.pieceAction(0);
         // console.log(game.pieces);
@@ -291,6 +280,7 @@ document.addEventListener("DOMContentLoaded", () => {
         game.pieceAction(3);
         // console.log(game.pieces);
       }
+      
     }
 // =============================================================================
 

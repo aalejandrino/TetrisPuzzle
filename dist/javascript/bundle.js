@@ -101,6 +101,7 @@ class Board {
     // this.ctx = ctx; //for rendering?
     this.createGrid();
 
+    this.remove_snd = new Audio("./sound/line-removal4.mp3");
   }
 
   createGrid() {
@@ -178,25 +179,33 @@ class Board {
       }
     }
 
+    if (score) {
+      this.remove_snd.play();
+    }
+    
     return score;
   }
-
+  
   clearRow(rowNum) {
     for (let i = 0; i < 10; i++) {
       this.grid[i][rowNum] = 0;
     }
   }
-
+  
   clearColumns() {
     let score = 0;
-
+    
     this.grid.forEach(column => {
       if (column.every(this.checkForTiles)) {
         column.fill(0);
         score += 10;
       }
     })
-
+    
+    if (score) {
+      this.remove_snd.play();
+    }
+    
     return score;
   }
 
@@ -272,7 +281,8 @@ class Game {
 
     // this.board = this.board.clearRows.bind(this);
     // this.board = this.board.clearColumns.bind(this);
-
+    this.select_snd = new Audio("./sound/select.mp3");
+    this.drop_snd = new Audio("./sound/line-drop.mp3");
   }
 
   receivePieces() {
@@ -301,6 +311,7 @@ class Game {
       this.returnPiece(num);
       element.classList.remove("hideMouse");
     }
+    this.select_snd.play();
   }
 
   selectPiece(num) {
@@ -319,6 +330,7 @@ class Game {
     if (this.selectedPiece && this.board.is_validMove(coor, this.selectedPiece)) {
       this.board.placePiece(coor, this.selectedPiece);
       this.score += this.selectedPiece.value;
+      this.drop_snd.play();
       this.selectedPiece = null;
 
       this.clearTiles();
@@ -374,27 +386,7 @@ class Game {
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _board__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./board */ "./javascript/board.js");
 /* harmony import */ var _game__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./game */ "./javascript/game.js");
-/* harmony import */ var _pieces_one__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./pieces/one */ "./javascript/pieces/one.js");
-/* harmony import */ var _pieces_two__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./pieces/two */ "./javascript/pieces/two.js");
-/* harmony import */ var _pieces_three__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./pieces/three */ "./javascript/pieces/three.js");
-/* harmony import */ var _pieces_square__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./pieces/square */ "./javascript/pieces/square.js");
-/* harmony import */ var _pieces_big_square__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./pieces/big_square */ "./javascript/pieces/big_square.js");
-/* harmony import */ var _pieces_long_horiz__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./pieces/long_horiz */ "./javascript/pieces/long_horiz.js");
-/* harmony import */ var _pieces_long_vert__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ./pieces/long_vert */ "./javascript/pieces/long_vert.js");
-/* harmony import */ var _pieces_zee__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ./pieces/zee */ "./javascript/pieces/zee.js");
-/* harmony import */ var _pieces_ell__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ./pieces/ell */ "./javascript/pieces/ell.js");
-/* harmony import */ var _pieces_jay__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! ./pieces/jay */ "./javascript/pieces/jay.js");
 //theme credited to Original Tetris
-
-
-
-
-
-
-
-
-
-
 
 
 
@@ -404,17 +396,13 @@ __webpack_require__.r(__webpack_exports__);
 var board = new _board__WEBPACK_IMPORTED_MODULE_0__["default"]();
 var game = new _game__WEBPACK_IMPORTED_MODULE_1__["default"](board);
 
+
+// music and 
 var music1 = new Audio("./sound/tetris.mp3");
 music1.volume = 0.5;
-// window.music1 = music1;
 
-
-// music1.play();
-
-// window.game = game;
-
-
-
+var start_snd = new Audio("./sound/start.mp3");
+var gameover_snd = new Audio("./sound/gameover.mp3");
 
 document.addEventListener("DOMContentLoaded", () => {
   console.log("Hey there and welcome to TetrisPuzzle");
@@ -447,7 +435,7 @@ document.addEventListener("DOMContentLoaded", () => {
     // ctx.arc(50,50,25,0,2*Math.PI);
     // ctx.fill();
     ctx.font = "72px Comic San";
-    ctx.fillText(`♫`, -10, 50);
+    ctx.fillText(`♫`, 0, 58);
 
 
     ctx.fillStyle = "white";
@@ -502,8 +490,10 @@ document.addEventListener("DOMContentLoaded", () => {
 
       // check for losing condition every few seconds
       if (game.checkGameOver()) {
-        alert("GAME OVER, NO VALID MOVES!! restart game");
-        console.log("GAME OVER, NO VALID MOVES!! restart game");
+        music1.pause();
+        gameover_snd.play();
+
+        setTimeout( () => alert("GAME OVER, NO VALID MOVES!! Restart the game (refresh page)"), 500);
       }
 
     }
@@ -536,6 +526,7 @@ document.addEventListener("DOMContentLoaded", () => {
       this.currentTime = this.duration;
       this.play();
     }, false);
+    start_snd.play();
     music1.play();
 
 
@@ -637,7 +628,7 @@ document.addEventListener("DOMContentLoaded", () => {
     // console.log(e.pageX + ',' + e.pageY);
     console.log(e.offsetX + ',' + e.offsetY);
 
-    if (e.offsetY < 56 && e.offsetX < 41) {
+    if (e.offsetY < 63 && e.offsetX < 50) {
       if (music1.paused) {
         music1.play();
       } else {
@@ -663,7 +654,7 @@ document.addEventListener("DOMContentLoaded", () => {
       }
     }
 
-    if (e.offsetY > 550 && e.offsetY < 700) {
+    if (e.offsetY > 550 && e.offsetY < 700) { 
       if (e.offsetX > 40 && e.offsetX < 175) {
         game.pieceAction(0);
         // console.log(game.pieces);
@@ -677,6 +668,7 @@ document.addEventListener("DOMContentLoaded", () => {
         game.pieceAction(3);
         // console.log(game.pieces);
       }
+      
     }
 // =============================================================================
 
