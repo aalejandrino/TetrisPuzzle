@@ -90,8 +90,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
 // select pieces ===============================================================
   canvasEl.addEventListener('click', (e) => {
-    // console.log(e.pageX + ',' + e.pageY);
-    console.log(e.offsetX + ',' + e.offsetY);
+    // console.log(e.offsetX + ',' + e.offsetY);
 
     if (e.offsetY < 63 && e.offsetX < 50) {
       if (music1.paused) {
