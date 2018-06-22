@@ -18,7 +18,7 @@ import { Jay1, Jay2, Jay3, Jay4 } from './pieces/jay';
 var board = new Board();
 var game = new Game(board);
 
-var music1 = new Audio("./sound/Tetris.mp3");
+var music1 = new Audio("./sound/tetris.mp3");
 music1.volume = 0.5;
 // window.music1 = music1;
 
@@ -234,7 +234,7 @@ document.addEventListener("DOMContentLoaded", () => {
       ctx.drawImage(img4, 0, 590, 450, 160);
     }
     img4.src = "images/gameover.png";
-  } 
+  }
 
   canvasEl.addEventListener('mousemove', function(e) {
     let offsetX = e.offsetX || offsetX;

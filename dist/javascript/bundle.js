@@ -404,7 +404,7 @@ __webpack_require__.r(__webpack_exports__);
 var board = new _board__WEBPACK_IMPORTED_MODULE_0__["default"]();
 var game = new _game__WEBPACK_IMPORTED_MODULE_1__["default"](board);
 
-var music1 = new Audio("./sound/Tetris.mp3");
+var music1 = new Audio("./sound/tetris.mp3");
 music1.volume = 0.5;
 // window.music1 = music1;
 
