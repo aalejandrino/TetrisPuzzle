@@ -32,6 +32,7 @@ class Game {
     this.pieces = {};
     this.selectedPiece = null;
     this.started = false;
+    this.atmenu = true;
 
     // this.board = this.board.clearRows.bind(this);
     // this.board = this.board.clearColumns.bind(this);

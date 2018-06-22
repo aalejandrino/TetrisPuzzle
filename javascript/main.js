@@ -54,7 +54,7 @@ document.addEventListener("DOMContentLoaded", () => {
     ctx.fillRect(0,0, canvasEl.width, canvasEl.height);
 
     ctx.fillStyle = "lightgrey";
-    ctx.fillRect(0,525, canvasEl.width, 175);
+    ctx.fillRect(0,535, canvasEl.width, 185);
 
     ctx.fillStyle = "white";
     // ctx.beginPath();
@@ -186,16 +186,55 @@ document.addEventListener("DOMContentLoaded", () => {
     ctx.font = "72px Comic San";
     ctx.fillText(`?`, 660, 695);
 
-    var img = new Image();
-    img.onload = function () {
-      ctx.drawImage(img, -140, 0);
+    var title_img = new Image();
+    title_img.onload = function () {
+      ctx.drawImage(title_img, -140, 0);
     }
 
-    img.src = "images/tetris-title.png";
+    title_img.src = "images/tetris-title.png";
 
   }
 
   renderMenu(ctx);
+
+  const renderHowToPlay = () => {
+    ctx.fillStyle = "black";
+    ctx.fillRect(0,0, canvasEl.width, canvasEl.height);
+
+    ctx.fillStyle = "lightblue";
+    ctx.beginPath();
+    ctx.arc(675,675,50,0,2*Math.PI);
+    ctx.fill();
+    ctx.stroke();
+
+    ctx.fillStyle = "black";
+    ctx.font = "36px Comic San";
+    ctx.fillText(`Back`, 635, 685);
+
+    var img1 = new Image();
+    img1.onload = function () {
+      ctx.drawImage(img1, 0, 0, 475, 285);
+    }
+    img1.src = "images/place_pieces.png";
+
+    var img3 = new Image();
+    img3.onload = function () {
+      ctx.drawImage(img3, 500, 200, 200, 400);
+    }
+    img3.src = "images/clear_column.png";
+
+    var img2 = new Image();
+    img2.onload = function () {
+      ctx.drawImage(img2, 25, 325, 450, 160);
+    }
+    img2.src = "images/clear_row.png";
+
+    var img4 = new Image();
+    img4.onload = function () {
+      ctx.drawImage(img4, 0, 590, 450, 160);
+    }
+    img4.src = "images/gameover.png";
+  }
 
   canvasEl.addEventListener('mousemove', function(e) {
     let offsetX = e.offsetX || offsetX;
@@ -216,7 +255,7 @@ document.addEventListener("DOMContentLoaded", () => {
       if (music1.paused) {
         music1.play();
       } else {
-        music1.pause(); 
+        music1.pause();
       }
 
     }
@@ -224,6 +263,18 @@ document.addEventListener("DOMContentLoaded", () => {
     if (!game.started && (e.offsetY > 400 && e.offsetY < 675)
                       && (e.offsetX > 250 && e.offsetX < 450)) {
       beginGame();
+    }
+
+    if (!game.started && (e.offsetY > 625 && e.offsetY < 725)
+                      && (e.offsetX > 625 && e.offsetX < 725)) {
+
+      if (game.atmenu === true) {
+        game.atmenu = false;
+        renderHowToPlay(ctx);
+      } else {
+        game.atmenu = true;
+        renderMenu(ctx);
+      }
     }
 
     if (e.offsetY > 550 && e.offsetY < 700) {
