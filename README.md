@@ -13,8 +13,8 @@ You can access the working demo here:
   * [Future Functionalities]()
 
 
-
 ## Features
+  * More information here
 
 ## Technologies
   * [Vanilla Javascript](https://www.youtube.com/watch?v=-OqZzV__hts) (Video Link) - Plain javascript without the use of JQuery can still be powerful in writing web applications.
@@ -91,5 +91,9 @@ You can access the working demo here:
 ## Credits
 
   * [giphy.com](https://giphy.com/gifs/animation-animated-gif-xTiTnxpQ3ghPiB2Hp6) - Awesome backgrounds!
+  * [Tetris Orchestra](https://www.youtube.com/watch?v=wBmZAg8HxfY) - Games in Concert playing Tetris!
 
 ## Future Functionalities
+
+[ ] Be able to pause the game which brings up an option to restart, resume, or go to the main menu.
+[ ] Include a "Best Scores" which records the name and score of players. (Top 10)
