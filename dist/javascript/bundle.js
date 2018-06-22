@@ -538,9 +538,9 @@ const renderMenu = (ctx) => {
 }
 
 
-const renderHowToPlay = () => {
+const renderHowToPlay = (ctx) => {
     ctx.fillStyle = "black";
-    ctx.fillRect(0, 0, canvasEl.width, canvasEl.height);
+    ctx.fillRect(0, 0, ctx.canvas.width, ctx.canvas.height);
 
     ctx.fillStyle = "lightblue";
     ctx.beginPath();
