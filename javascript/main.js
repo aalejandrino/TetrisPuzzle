@@ -234,7 +234,7 @@ document.addEventListener("DOMContentLoaded", () => {
       ctx.drawImage(img4, 0, 590, 450, 160);
     }
     img4.src = "images/gameover.png";
-  }
+  } 
 
   canvasEl.addEventListener('mousemove', function(e) {
     let offsetX = e.offsetX || offsetX;
