@@ -1,6 +1,8 @@
 html {
   text-align: center;
-  background-color: black;
+  background-color: #000000;
+  background-image: url('https://media.giphy.com/media/xTiTnxpQ3ghPiB2Hp6/giphy.gif');
+  background-size: cover;
 }
 
 body
@@ -14,7 +16,7 @@ header {
   background-color: black;
   width: 700px;
   padding: 0px 25px;
-  border: 1px solid grey;
+  border: 1px solid goldenrod;
   position: relative;
   display: inline-flex;
   justify-content: space-around;

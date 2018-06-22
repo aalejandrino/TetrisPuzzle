@@ -27,23 +27,30 @@ document.addEventListener("DOMContentLoaded", () => {
   var ctx = canvasEl.getContext("2d");
   var shiftColors = 0;
 
+  var greentable = new Image();
+  greentable.src = "images/green_tablecloth.jpg";
+
+  var woodsq = new Image();
+  woodsq.src = "images/wood_square.png";
+
 // render game ===============================================================
 
   const render = () => {
     // requestAnimationFrame( render );
     ctx.clearRect(0, 0, canvasEl.width, canvasEl.height);
+    ctx.drawImage(greentable, 0, 0, canvasEl.width, canvasEl.height);
+    
+    ctx.strokeStyle = "goldenrod";
+    ctx.strokeRect(0, 0, canvasEl.width, canvasEl.height);
+    ctx.strokeRect(1, 0, canvasEl.width-2, canvasEl.height-1);
+
+    // ctx.fillStyle = "black";
+    // ctx.fillRect(0, 0, canvasEl.width, canvasEl.height);
+    
+    // ctx.fillStyle = "grey";
+    // ctx.fillRect(0,535, canvasEl.width, 185);
+    
     ctx.strokeStyle = "black";
-
-    ctx.fillStyle = "black";
-    ctx.fillRect(0,0, canvasEl.width, canvasEl.height);
-
-    ctx.fillStyle = "lightgrey";
-    ctx.fillRect(0,535, canvasEl.width, 185);
-
-    // ctx.beginPath();
-    // ctx.arc(50,50,25,0,2*Math.PI);
-    // ctx.fill();
-
     ctx.fillStyle = "white";
     ctx.font = "72px Comic San";
     ctx.fillText(`♫`, 0, 58);
@@ -57,22 +64,26 @@ document.addEventListener("DOMContentLoaded", () => {
 
     ctx.fillStyle = "white";
     ctx.font = "42px Comic San";
-    ctx.fillText(`Score: ${game.score}`, 250, 50);
+    ctx.fillText(`Score: ${game.score}`, 275, 50);
 
     for (let i = 0; i < 10; i++) {
       for (let j = 0; j < 10; j++) {
 
         if (board.grid[i][j] === 0) {
-          ctx.fillStyle = "white";
+          ctx.drawImage(woodsq, ((i * 45) + 150), (j * 45) + 75, 45, 45);
+          // ctx.fillStyle = "white";
+
         } else if (shiftColors > 100) {
           ctx.fillStyle = board.grid[i][j].color;
+          ctx.fillRect(((i * 45) + 150), (j * 45) + 75, 45, 45);
           // ctx.fillStyle = "silver";
         } else {
           // ctx.fillStyle = "silver";
           ctx.fillStyle = "dark" + board.grid[i][j].color;
+          ctx.fillRect(((i * 45) + 150), (j * 45) + 75, 45, 45);
         }
 
-        ctx.fillRect(((i*45) + 150), (j*45) + 75, 45, 45);
+        // ctx.fillRect(((i*45) + 150), (j*45) + 75, 45, 45);
         ctx.strokeRect(((i*45) + 150), (j*45) + 75, 45, 45);
       }
     }
