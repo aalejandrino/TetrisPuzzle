@@ -6,15 +6,23 @@ You can access the working demo here:
 [Live Page](https://adobofrenzy.github.io/TetrisPuzzle/)
 
 ## Table of Contents
-  * [Features]()
-  * [Technologies]()
-  * [Canvas Coordinates]()
-  * [Credits]()
-  * [Future Functionalities]()
+  * [Features](https://github.com/AdoboFrenzy/TetrisPuzzle#features)
+  * [Technologies](https://github.com/AdoboFrenzy/TetrisPuzzle#technologies)
+  * [Canvas Coordinates](https://github.com/AdoboFrenzy/TetrisPuzzle#canvas-coordinates)
+  * [Credits](https://github.com/AdoboFrenzy/TetrisPuzzle#credits)
+  * [Future Functionalities](https://github.com/AdoboFrenzy/TetrisPuzzle#future-functionalities)
 
 
 ## Features
-  * More information here
+
+  Main Menu includes the title, play button, and how-to-play button that will leave you in awe.
+
+  If this is your first time playing Tetris Puzzle, check out the how-to-play page.
+  ![](./images/readme/1.png)
+
+  Once the game starts, puzzle pieces spawn and the fun begins! The on / off music button is located on the top left, but if possible, keep it on and listen to an awesome version of Tetris music!
+  ![](./images/readme/3.png)
+
 
 ## Technologies
   * [Vanilla Javascript](https://www.youtube.com/watch?v=-OqZzV__hts) (Video Link) - Plain javascript without the use of JQuery can still be powerful in writing web applications.
