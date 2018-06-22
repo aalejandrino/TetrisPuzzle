@@ -19,6 +19,7 @@ var board = new Board();
 var game = new Game(board);
 
 var music1 = new Audio("./sound/Tetris.mp3");
+music1.volume = 0.5;
 // window.music1 = music1;
 
 
@@ -55,10 +56,13 @@ document.addEventListener("DOMContentLoaded", () => {
     ctx.fillStyle = "lightgrey";
     ctx.fillRect(0,525, canvasEl.width, 175);
 
-    ctx.fillStyle = "lightblue";
-    ctx.beginPath();
-    ctx.arc(50,50,25,0,2*Math.PI);
-    ctx.fill();
+    ctx.fillStyle = "white";
+    // ctx.beginPath();
+    // ctx.arc(50,50,25,0,2*Math.PI);
+    // ctx.fill();
+    ctx.font = "72px Comic San";
+    ctx.fillText(`♫`, -10, 50);
+
 
     ctx.fillStyle = "white";
     ctx.font = "42px Comic San";
@@ -206,7 +210,17 @@ document.addEventListener("DOMContentLoaded", () => {
 // select pieces ===============================================================
   canvasEl.addEventListener('click', (e) => {
     // console.log(e.pageX + ',' + e.pageY);
-    // console.log(e.offsetX + ',' + e.offsetY);
+    console.log(e.offsetX + ',' + e.offsetY);
+
+    if (e.offsetY < 56 && e.offsetX < 41) {
+      if (music1.paused) {
+        music1.play();
+      } else {
+        music1.pause(); 
+      }
+
+    }
+
     if (!game.started && (e.offsetY > 400 && e.offsetY < 675)
                       && (e.offsetX > 250 && e.offsetX < 450)) {
       beginGame();
