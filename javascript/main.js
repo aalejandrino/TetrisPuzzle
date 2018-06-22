@@ -18,9 +18,6 @@ var gameover_snd = new Audio("./sound/gameover.mp3");
 
 document.addEventListener("DOMContentLoaded", () => {
   console.log("Hey there and welcome to TetrisPuzzle");
-  // window.game = game;
-  // console.log(game.pieces);
-
 
   var canvasEl = document.getElementById("canvas");
   canvasEl.width = 750;
@@ -99,7 +96,6 @@ document.addEventListener("DOMContentLoaded", () => {
     } else {
       shiftColors = 0;
 
-
       // check for losing condition every few seconds
       if (game.checkGameOver()) {
         music1.pause();
@@ -109,7 +105,6 @@ document.addEventListener("DOMContentLoaded", () => {
       }
 
     }
-
 
     if (game.selectedPiece) {
 
