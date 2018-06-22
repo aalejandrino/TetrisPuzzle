@@ -3,7 +3,6 @@
 import Board from './board';
 import Game from './game';
 
-// Initialize canvas and display splash
 
 var board = new Board();
 var game = new Game(board);
@@ -11,14 +10,16 @@ var game = new Game(board);
 
 // music and sound effects
 var music1 = new Audio("./sound/tetris.mp3");
-music1.volume = 0.5;
+music1.volume = 0.75;
 
 var start_snd = new Audio("./sound/start.mp3");
 var gameover_snd = new Audio("./sound/gameover.mp3");
 
+
+
 document.addEventListener("DOMContentLoaded", () => {
   console.log("Hey there and welcome to TetrisPuzzle");
-
+  // Initialize canvas and display splash
   var canvasEl = document.getElementById("canvas");
   canvasEl.width = 750;
   canvasEl.height = 750;
@@ -39,12 +40,19 @@ document.addEventListener("DOMContentLoaded", () => {
     ctx.fillStyle = "lightgrey";
     ctx.fillRect(0,535, canvasEl.width, 185);
 
-    ctx.fillStyle = "white";
     // ctx.beginPath();
     // ctx.arc(50,50,25,0,2*Math.PI);
     // ctx.fill();
+
+    ctx.fillStyle = "white";
     ctx.font = "72px Comic San";
     ctx.fillText(`♫`, 0, 58);
+
+    if (music1.paused) {
+      ctx.fillStyle = "red";
+      ctx.fillText(`/`, 25, 58);
+      ctx.fillText(`_`, 15, 29);
+    }
 
 
     ctx.fillStyle = "white";
@@ -244,8 +252,8 @@ document.addEventListener("DOMContentLoaded", () => {
 
     }
 
-    if (!game.started && (e.offsetY > 400 && e.offsetY < 675)
-                      && (e.offsetX > 250 && e.offsetX < 450)) {
+    if (!game.started && (e.offsetY > 525 && e.offsetY < 725)
+                      && (e.offsetX > 275 && e.offsetX < 475)) {
       beginGame();
     }
 

@@ -14,15 +14,14 @@ To score points, the player automatically gets 1 point per square filled (a 3-si
 ### MVPs and Bonuses
 In TetrisPuzzle, users will be able to:
 
-- [ ] Start the game with a 10x10 board and 4 random puzzle pieces.
-- [ ] Place the puzzle pieces on the board.
-- [ ] Filled rows and columns disappear to make space for the user.
-- [ ] Obtain a calculated score based on the user's performance.
+- [x] Start the game with a 10x10 board and 4 random puzzle pieces.
+- [x] Place the puzzle pieces on the board.
+- [x] Filled rows and columns disappear to make space for the user.
+- [x] Obtain a calculated score based on the user's performance.
 - [ ] Pause the game which brings up an option to restart, resume, or go to the main menu.
 
 Bonuses:
 - View a demo to teach them how to play.
-- Add the functionality to rotate pieces? (Not sure yet, might make the game too easy)
 - Add background music and sound when placing pieces.
 - Turn the background music/sound on and off.
 - Include a "Best Scores" which records the name and score of players. (top 10?)
@@ -53,7 +52,7 @@ The following will also be involved in the project:
 
 **Over the weekend**
 - [x] Play some javascript games and come up with an idea of what to do for the project
-- [ ] Do some research on how to start a javascript game project
+- [x] Do some research on how to start a javascript game project
 - [x] Set up a repo in Github and begin creating some files (create a new project folder and set up `webpack.config.js`, `package.json`, and the basic `entry file`)
 - [x] Finish Project proposal for jabberwocky
 
@@ -69,8 +68,7 @@ The following will also be involved in the project:
 
 ### Bonus MVPS
 Work on these if time permits:
-- [ ] View a demo to teach them how to play.
-- [ ] Add the functionality to rotate pieces? (Not sure yet, might make the game too easy)
-- [ ] Add background music and sound when placing pieces.
-- [ ] Turn the background music/sound on and off.
+- [x] View a demo to teach them how to play.
+- [x] Add background music and sound when placing pieces.
+- [x] Turn the background music/sound on and off.
 - [ ] Include a "Best Scores" which records the name and score of players. (top 10?)
