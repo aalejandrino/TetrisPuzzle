@@ -539,6 +539,7 @@ const renderMenu = (ctx) => {
 
 
 const renderHowToPlay = (ctx) => {
+    debugger
     ctx.fillStyle = "black";
     ctx.fillRect(0, 0, ctx.canvas.width, ctx.canvas.height);
 
