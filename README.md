@@ -95,5 +95,5 @@ You can access the working demo here:
 
 ## Future Functionalities
 
-[ ] Be able to pause the game which brings up an option to restart, resume, or go to the main menu.
-[ ] Include a "Best Scores" which records the name and score of players. (Top 10)
+  - [ ] Be able to pause the game which brings up an option to restart, resume, or go to the main menu.
+  - [ ] Include a "Best Scores" which records the name and score of players. (Top 10)
