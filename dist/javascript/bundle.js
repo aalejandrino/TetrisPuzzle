@@ -375,6 +375,210 @@ class Game {
 
 /***/ }),
 
+/***/ "./javascript/game_render.js":
+/*!***********************************!*\
+  !*** ./javascript/game_render.js ***!
+  \***********************************/
+/*! exports provided: renderField, renderMusicNote, renderScore, renderGridAndPieces, renderSelected, renderMenu, renderHowToPlay */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "renderField", function() { return renderField; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "renderMusicNote", function() { return renderMusicNote; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "renderScore", function() { return renderScore; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "renderGridAndPieces", function() { return renderGridAndPieces; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "renderSelected", function() { return renderSelected; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "renderMenu", function() { return renderMenu; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "renderHowToPlay", function() { return renderHowToPlay; });
+var greentable = new Image();
+greentable.src = "images/green_tablecloth.jpg";
+
+var woodsq = new Image();
+woodsq.src = "images/wood_square.png";
+
+
+const renderField = (ctx) => {
+
+    ctx.clearRect(0, 0, ctx.canvas.width, ctx.canvas.height);
+    ctx.drawImage(greentable, 0, 0, ctx.canvas.width, ctx.canvas.height);
+
+    ctx.strokeStyle = "goldenrod";
+    ctx.strokeRect(0, 0, ctx.canvas.width, ctx.canvas.height);
+    ctx.strokeRect(1, 0, ctx.canvas.width - 2, ctx.canvas.height - 1);
+}
+
+
+const renderMusicNote = (ctx, music) => {
+    ctx.strokeStyle = "black";
+    ctx.fillStyle = "white";
+    ctx.font = "72px Comic San";
+    ctx.fillText(`♫`, 0, 58);
+
+    if (music.paused) {
+        ctx.fillStyle = "red";
+        ctx.fillText(`/`, 25, 58);
+        ctx.fillText(`_`, 15, 29);
+    }
+}
+
+
+const renderScore = (ctx, score) => {
+    ctx.fillStyle = "white";
+    ctx.font = "42px Comic San";
+    ctx.fillText(`Score: ${score}`, 275, 50);
+}
+
+
+const renderGridAndPieces = (ctx, game, board, shiftColors) => {
+    for (let i = 0; i < 10; i++) {
+        for (let j = 0; j < 10; j++) {
+
+            if (board.grid[i][j] === 0) {
+                ctx.drawImage(woodsq, ((i * 45) + 150), (j * 45) + 75, 45, 45);
+                // ctx.fillStyle = "white";
+
+            } else if (shiftColors > 100) {
+                ctx.fillStyle = board.grid[i][j].color;
+                ctx.fillRect(((i * 45) + 150), (j * 45) + 75, 45, 45);
+                // ctx.fillStyle = "silver";
+            } else {
+                // ctx.fillStyle = "silver";
+                ctx.fillStyle = "dark" + board.grid[i][j].color;
+                ctx.fillRect(((i * 45) + 150), (j * 45) + 75, 45, 45);
+            }
+
+            // ctx.fillRect(((i*45) + 150), (j*45) + 75, 45, 45);
+            ctx.strokeRect(((i * 45) + 150), (j * 45) + 75, 45, 45);
+        }
+    }
+
+
+    for (let n = 0; n < 4; n++) {
+        let current_piece = game.pieces[n];
+
+        if (current_piece === null) {
+            continue;
+        } else {
+
+            for (let i = 0; i < current_piece.tiles.length; i++) {
+                for (let j = 0; j < current_piece.tiles[0].length; j++) {
+
+                    if (current_piece.tiles[i][j] === 0) {
+                        continue;
+                    } else {
+                        ctx.fillStyle = current_piece.tiles[i][j].color;
+                        ctx.fillRect((i * 45) + 40 + (n * 187.5), (j * 45) + 555, 45, 45)
+                        ctx.strokeRect((i * 45) + 40 + (n * 187.5), (j * 45) + 555, 45, 45)
+                    };
+                }
+            }
+        }
+    }
+    
+}
+
+
+const renderSelected = (ctx, game) => {
+    if (game.selectedPiece) {
+
+        for (let i = 0; i < game.selectedPiece.tiles.length; i++) {
+            for (let j = 0; j < game.selectedPiece.tiles[0].length; j++) {
+
+                if (game.selectedPiece.tiles[i][j] === 0) {
+                    continue;
+                } else {
+                    ctx.fillStyle = game.selectedPiece.tiles[i][j].color;
+                    ctx.fillRect(window.offsetX - 22.5 + (i * 45), window.offsetY - 22.5 + (j * 45), 45, 45);
+                    ctx.strokeRect(window.offsetX - 22.5 + (i * 45), window.offsetY - 22.5 + (j * 45), 45, 45);
+                }
+            }
+        }
+    }
+}
+
+
+const renderMenu = (ctx) => {
+    ctx.fillStyle = "black";
+    ctx.fillRect(0, 0, ctx.canvas.width, ctx.canvas.height);
+    // ctx.font = "60px Comic San";
+    // ctx.fillText(`START`, 300, 625);
+    ctx.fillStyle = "blue";
+    ctx.strokeStyle = "silver";
+    ctx.beginPath();
+    ctx.arc(375, 625, 100, 0, 2 * Math.PI);
+    ctx.fill();
+    ctx.stroke();
+
+    ctx.fillStyle = "black";
+    ctx.beginPath();
+    ctx.moveTo(335, 560);
+    ctx.lineTo(335, 690);
+    ctx.lineTo(445, 625);
+    ctx.fill();
+    ctx.stroke();
+
+    ctx.fillStyle = "lightblue";
+    ctx.beginPath();
+    ctx.arc(675, 675, 50, 0, 2 * Math.PI);
+    ctx.fill();
+    ctx.stroke();
+
+    ctx.fillStyle = "black";
+    ctx.font = "72px Comic San";
+    ctx.fillText(`?`, 660, 695);
+
+    var title_img = new Image();
+    title_img.onload = function () {
+        ctx.drawImage(title_img, -140, 0);
+    }
+
+    title_img.src = "images/tetris-title.png";
+
+}
+
+
+const renderHowToPlay = () => {
+    ctx.fillStyle = "black";
+    ctx.fillRect(0, 0, canvasEl.width, canvasEl.height);
+
+    ctx.fillStyle = "lightblue";
+    ctx.beginPath();
+    ctx.arc(675, 675, 50, 0, 2 * Math.PI);
+    ctx.fill();
+    ctx.stroke();
+
+    ctx.fillStyle = "black";
+    ctx.font = "36px Comic San";
+    ctx.fillText(`Back`, 635, 685);
+
+    var img1 = new Image();
+    img1.onload = function () {
+        ctx.drawImage(img1, 0, 0, 475, 285);
+    }
+    img1.src = "images/place_pieces.png";
+
+    var img3 = new Image();
+    img3.onload = function () {
+        ctx.drawImage(img3, 500, 200, 200, 400);
+    }
+    img3.src = "images/clear_column.png";
+
+    var img2 = new Image();
+    img2.onload = function () {
+        ctx.drawImage(img2, 25, 325, 450, 160);
+    }
+    img2.src = "images/clear_row.png";
+
+    var img4 = new Image();
+    img4.onload = function () {
+        ctx.drawImage(img4, 0, 590, 450, 160);
+    }
+    img4.src = "images/gameover.png";
+}
+
+/***/ }),
+
 /***/ "./javascript/main.js":
 /*!****************************!*\
   !*** ./javascript/main.js ***!
@@ -386,7 +590,9 @@ class Game {
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _board__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./board */ "./javascript/board.js");
 /* harmony import */ var _game__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./game */ "./javascript/game.js");
+/* harmony import */ var _game_render__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./game_render */ "./javascript/game_render.js");
 //theme credited to Original Tetris
+
 
 
 
@@ -415,88 +621,18 @@ document.addEventListener("DOMContentLoaded", () => {
   var ctx = canvasEl.getContext("2d");
   var shiftColors = 0;
 
-  var greentable = new Image();
-  greentable.src = "images/green_tablecloth.jpg";
-
-  var woodsq = new Image();
-  woodsq.src = "images/wood_square.png";
-
 // render game ===============================================================
-
   const render = () => {
-    // requestAnimationFrame( render );
-    ctx.clearRect(0, 0, canvasEl.width, canvasEl.height);
-    ctx.drawImage(greentable, 0, 0, canvasEl.width, canvasEl.height);
+
+    Object(_game_render__WEBPACK_IMPORTED_MODULE_2__["renderField"])(ctx);
     
-    ctx.strokeStyle = "goldenrod";
-    ctx.strokeRect(0, 0, canvasEl.width, canvasEl.height);
-    ctx.strokeRect(1, 0, canvasEl.width-2, canvasEl.height-1);
+    Object(_game_render__WEBPACK_IMPORTED_MODULE_2__["renderMusicNote"])(ctx, music1);
 
-    // ctx.fillStyle = "black";
-    // ctx.fillRect(0, 0, canvasEl.width, canvasEl.height);
-    
-    // ctx.fillStyle = "grey";
-    // ctx.fillRect(0,535, canvasEl.width, 185);
-    
-    ctx.strokeStyle = "black";
-    ctx.fillStyle = "white";
-    ctx.font = "72px Comic San";
-    ctx.fillText(`♫`, 0, 58);
+    Object(_game_render__WEBPACK_IMPORTED_MODULE_2__["renderScore"])(ctx, game.score);
 
-    if (music1.paused) {
-      ctx.fillStyle = "red";
-      ctx.fillText(`/`, 25, 58);
-      ctx.fillText(`_`, 15, 29);
-    }
+    Object(_game_render__WEBPACK_IMPORTED_MODULE_2__["renderGridAndPieces"])(ctx, game, board, shiftColors)
 
-
-    ctx.fillStyle = "white";
-    ctx.font = "42px Comic San";
-    ctx.fillText(`Score: ${game.score}`, 275, 50);
-
-    for (let i = 0; i < 10; i++) {
-      for (let j = 0; j < 10; j++) {
-
-        if (board.grid[i][j] === 0) {
-          ctx.drawImage(woodsq, ((i * 45) + 150), (j * 45) + 75, 45, 45);
-          // ctx.fillStyle = "white";
-
-        } else if (shiftColors > 100) {
-          ctx.fillStyle = board.grid[i][j].color;
-          ctx.fillRect(((i * 45) + 150), (j * 45) + 75, 45, 45);
-          // ctx.fillStyle = "silver";
-        } else {
-          // ctx.fillStyle = "silver";
-          ctx.fillStyle = "dark" + board.grid[i][j].color;
-          ctx.fillRect(((i * 45) + 150), (j * 45) + 75, 45, 45);
-        }
-
-        // ctx.fillRect(((i*45) + 150), (j*45) + 75, 45, 45);
-        ctx.strokeRect(((i*45) + 150), (j*45) + 75, 45, 45);
-      }
-    }
-
-    for (let n = 0; n < 4; n++) {
-      let current_piece = game.pieces[n];
-
-      if (current_piece === null) {
-        continue;
-      } else {
-
-        for (let i = 0; i < current_piece.tiles.length; i++) {
-          for (let j = 0; j < current_piece.tiles[0].length; j++) {
-
-            if (current_piece.tiles[i][j] === 0) {
-              continue;
-            } else {
-              ctx.fillStyle = current_piece.tiles[i][j].color;
-              ctx.fillRect((i*45) + 40 + (n*187.5), (j*45) + 555, 45, 45)
-              ctx.strokeRect((i*45) + 40 + (n*187.5), (j*45) + 555, 45, 45)
-            };
-          }
-        }
-      }
-    }
+    Object(_game_render__WEBPACK_IMPORTED_MODULE_2__["renderSelected"])(ctx, game);
 
     if (shiftColors < 201) {
       shiftColors++;
@@ -511,22 +647,6 @@ document.addEventListener("DOMContentLoaded", () => {
         setTimeout( () => alert("GAME OVER, NO VALID MOVES!! Restart the game (refresh page)"), 500);
       }
 
-    }
-
-    if (game.selectedPiece) {
-
-      for (let i = 0; i < game.selectedPiece.tiles.length; i++) {
-        for (let j = 0; j < game.selectedPiece.tiles[0].length; j++) {
-
-          if (game.selectedPiece.tiles[i][j] === 0) {
-            continue;
-          } else {
-            ctx.fillStyle = game.selectedPiece.tiles[i][j].color;
-            ctx.fillRect(window.offsetX - 22.5 + (i*45), window.offsetY - 22.5 + (j*45), 45, 45);
-            ctx.strokeRect(window.offsetX - 22.5 + (i*45), window.offsetY - 22.5 + (j*45), 45, 45);
-          }
-        }
-      }
     }
 
     requestAnimationFrame( render );
@@ -547,85 +667,7 @@ document.addEventListener("DOMContentLoaded", () => {
     render();
   }
 
-  const renderMenu = (ctx) => {
-    ctx.fillStyle = "black";
-    ctx.fillRect(0,0, canvasEl.width, canvasEl.height);
-    // ctx.font = "60px Comic San";
-    // ctx.fillText(`START`, 300, 625);
-    ctx.fillStyle = "blue";
-    ctx.strokeStyle = "silver";
-    ctx.beginPath();
-    ctx.arc(375,625,100,0,2*Math.PI);
-    ctx.fill();
-    ctx.stroke();
-
-    ctx.fillStyle = "black";
-    ctx.beginPath();
-    ctx.moveTo(335, 560);
-    ctx.lineTo(335, 690);
-    ctx.lineTo(445, 625);
-    ctx.fill();
-    ctx.stroke();
-
-    ctx.fillStyle = "lightblue";
-    ctx.beginPath();
-    ctx.arc(675,675,50,0,2*Math.PI);
-    ctx.fill();
-    ctx.stroke();
-
-    ctx.fillStyle = "black";
-    ctx.font = "72px Comic San";
-    ctx.fillText(`?`, 660, 695);
-
-    var title_img = new Image();
-    title_img.onload = function () {
-      ctx.drawImage(title_img, -140, 0);
-    }
-
-    title_img.src = "images/tetris-title.png";
-
-  }
-
-  renderMenu(ctx);
-
-  const renderHowToPlay = () => {
-    ctx.fillStyle = "black";
-    ctx.fillRect(0,0, canvasEl.width, canvasEl.height);
-
-    ctx.fillStyle = "lightblue";
-    ctx.beginPath();
-    ctx.arc(675,675,50,0,2*Math.PI);
-    ctx.fill();
-    ctx.stroke();
-
-    ctx.fillStyle = "black";
-    ctx.font = "36px Comic San";
-    ctx.fillText(`Back`, 635, 685);
-
-    var img1 = new Image();
-    img1.onload = function () {
-      ctx.drawImage(img1, 0, 0, 475, 285);
-    }
-    img1.src = "images/place_pieces.png";
-
-    var img3 = new Image();
-    img3.onload = function () {
-      ctx.drawImage(img3, 500, 200, 200, 400);
-    }
-    img3.src = "images/clear_column.png";
-
-    var img2 = new Image();
-    img2.onload = function () {
-      ctx.drawImage(img2, 25, 325, 450, 160);
-    }
-    img2.src = "images/clear_row.png";
-
-    var img4 = new Image();
-    img4.onload = function () {
-      ctx.drawImage(img4, 0, 590, 450, 160);
-    }
-    img4.src = "images/gameover.png";
-  }
+  Object(_game_render__WEBPACK_IMPORTED_MODULE_2__["renderMenu"])(ctx);
 
   canvasEl.addEventListener('mousemove', function(e) {
     let offsetX = e.offsetX || offsetX;
@@ -661,10 +703,10 @@ document.addEventListener("DOMContentLoaded", () => {
 
       if (game.atmenu === true) {
         game.atmenu = false;
-        renderHowToPlay(ctx);
+        Object(_game_render__WEBPACK_IMPORTED_MODULE_2__["renderHowToPlay"])(ctx);
       } else {
         game.atmenu = true;
-        renderMenu(ctx);
+        Object(_game_render__WEBPACK_IMPORTED_MODULE_2__["renderMenu"])(ctx);
       }
     }
 
@@ -688,13 +730,12 @@ document.addEventListener("DOMContentLoaded", () => {
 
 // place pieces on board
   if (e.offsetX > 150 && e.offsetX < 600 && e.offsetY > 75 && e.offsetY < 525) {
-    // console.log("you clicked on the board!")
 
     if (game.selectedPiece) {
       let x = Math.floor((e.offsetX - 150)/45);
       let y = Math.floor((e.offsetY - 75)/45);
       game.placePiece([x,y]);
-      // console.log("you placed a piece!");
+
     } else {
       console.log("please select a piece!");
     }
@@ -703,17 +744,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
   }, false);
 
-
-  // track mouse cursor ========================================================
-
 });
-
-// ===========================================================================
-
-
-// canvasEl.addEventListener('click',function(evt){
-// alert(evt.offsetX + ',' + evt.clientY);
-// },false);
 
 
 /***/ }),
