@@ -103,6 +103,7 @@ class Board {
     
     //sound effects
     this.remove_snd = new Audio("./sound/line-removal4.mp3");
+    this.remove_snd.volume = 0.4;
   }
 
   createGrid() {
@@ -282,7 +283,9 @@ class Game {
 
     //sound effects
     this.select_snd = new Audio("./sound/select.mp3");
+    this.select_snd.volume = 0.4;
     this.drop_snd = new Audio("./sound/line-drop.mp3");
+    this.drop_snd.volume = 0.4;
   }
 
   receivePieces() {
@@ -605,10 +608,12 @@ var game = new _game__WEBPACK_IMPORTED_MODULE_1__["default"](board);
 
 // music and sound effects
 var music1 = new Audio("./sound/tetris.mp3");
-music1.volume = 0.75;
+music1.volume = 0.65;
 
 var start_snd = new Audio("./sound/start.mp3");
+start_snd.volume = 0.5;
 var gameover_snd = new Audio("./sound/gameover.mp3");
+gameover_snd.volume = 0.5;
 
 
 

@@ -6,6 +6,7 @@ class Board {
     
     //sound effects
     this.remove_snd = new Audio("./sound/line-removal4.mp3");
+    this.remove_snd.volume = 0.4;
   }
 
   createGrid() {

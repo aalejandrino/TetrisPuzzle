@@ -13,10 +13,12 @@ var game = new Game(board);
 
 // music and sound effects
 var music1 = new Audio("./sound/tetris.mp3");
-music1.volume = 0.75;
+music1.volume = 0.65;
 
 var start_snd = new Audio("./sound/start.mp3");
+start_snd.volume = 0.5;
 var gameover_snd = new Audio("./sound/gameover.mp3");
+gameover_snd.volume = 0.5;
 
 
 
