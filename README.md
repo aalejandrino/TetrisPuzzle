@@ -98,6 +98,7 @@ You can access the working demo here:
 
 ## Credits
 
+  * [Tetris](https://en.wikipedia.org/wiki/Tetris) - Must give credit to our childhood game of classic Tetris!
   * [giphy.com](https://giphy.com/gifs/animation-animated-gif-xTiTnxpQ3ghPiB2Hp6) - Awesome backgrounds!
   * [Tetris Orchestra](https://www.youtube.com/watch?v=wBmZAg8HxfY) - Games in Concert playing Tetris!
 
