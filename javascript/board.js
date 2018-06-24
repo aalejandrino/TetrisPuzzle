@@ -68,59 +68,65 @@ class Board {
     return el !== 0;
   }
 
-  clearRows() {
-    let score = 0;
-
-    for (let j = 0; j < 10; j++) {
-      let check_row = [];
-
-      for (let i = 0; i < 10; i++) {
-        check_row.push(this.grid[i][j]);
-      }
-
-      if (check_row.every(this.checkForTiles)) {
-        this.clearRow(j);
-        score += 10;
-      }
-    }
-
-    if (score) {
-      this.remove_snd.play();
-    }
-
-    return score;
-  }
-
   clearRow(rowNum) {
     for (let i = 0; i < 10; i++) {
       this.grid[i][rowNum] = 0;
     }
   }
 
-  clearColumns() {
+  clearColumn(colNum) {
+    this.grid[colNum].fill(0)
+  }
+  
+  clearRowsColumns() {
     let score = 0;
-
-    this.grid.forEach(column => {
+    let r_c = [[],[]];
+  
+    // rows ===========================
+    for (let j = 0; j < 10; j++) {
+      let check_row = [];
+  
+      for (let i = 0; i < 10; i++) {
+        check_row.push(this.grid[i][j]);
+      }
+  
+      if (check_row.every(this.checkForTiles)) {
+        // this.clearRow(j);
+        r_c[0].push(j) ;
+        score += 10;
+      }
+    }
+  
+    // ================================
+    // columns ========================
+    this.grid.forEach((column, i) => {
       if (column.every(this.checkForTiles)) {
-        column.fill(0);
+        // column.fill(0);
+        r_c[1].push(i);
         score += 10;
       }
     })
+    // =================================
+    this.clear(r_c);
 
     if (score) {
       this.remove_snd.play();
     }
-
     return score;
   }
 
-  clearColumn(colNum) {
-    this.grid[colNum].fill(0)
+  clear(arr) {
+    arr[0].forEach(rowNum => {
+      this.clearRow(rowNum);
+    })
+
+    arr[1].forEach(colNum => {
+      this.clearColumn(colNum);
+    })
   }
-
-
-
 }
+
+
 
 
 export default Board;

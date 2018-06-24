@@ -53,8 +53,8 @@ class Game {
   }
 
   clearTiles() {
-    this.score += this.board.clearColumns();
-    this.score += this.board.clearRows();
+    
+    this.score += this.board.clearRowsColumns();
   }
 
   pieceAction(num) {
@@ -71,8 +71,7 @@ class Game {
   }
 
   selectPiece(num) {
-    this.selectedPiece = this.pieces[num]
-    this.pieces[num] = null;
+    [this.selectedPiece, this.pieces[num]] = [this.pieces[num], this.selectedPiece];
   }
 
   returnPiece(num) {
