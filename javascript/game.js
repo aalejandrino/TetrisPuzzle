@@ -36,9 +36,9 @@ class Game {
 
     //sound effects
     this.select_snd = new Audio("./sound/select.mp3");
-    this.select_snd.volume = 0.4;
+    this.select_snd.volume = 0.3;
     this.drop_snd = new Audio("./sound/line-drop.mp3");
-    this.drop_snd.volume = 0.4;
+    this.drop_snd.volume = 0.3;
   }
 
   receivePieces() {

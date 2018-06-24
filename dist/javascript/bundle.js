@@ -103,7 +103,7 @@ class Board {
     
     //sound effects
     this.remove_snd = new Audio("./sound/line-removal4.mp3");
-    this.remove_snd.volume = 0.4;
+    this.remove_snd.volume = 0.3;
   }
 
   createGrid() {
@@ -289,9 +289,9 @@ class Game {
 
     //sound effects
     this.select_snd = new Audio("./sound/select.mp3");
-    this.select_snd.volume = 0.4;
+    this.select_snd.volume = 0.3;
     this.drop_snd = new Audio("./sound/line-drop.mp3");
-    this.drop_snd.volume = 0.4;
+    this.drop_snd.volume = 0.3;
   }
 
   receivePieces() {
@@ -613,17 +613,16 @@ var game = new _game__WEBPACK_IMPORTED_MODULE_1__["default"](board);
 
 // music and sound effects
 var music1 = new Audio("./sound/tetris.mp3");
-music1.volume = 0.65;
+music1.volume = 0.50;
 
 var start_snd = new Audio("./sound/start.mp3");
-start_snd.volume = 0.5;
+start_snd.volume = 0.40;
 var gameover_snd = new Audio("./sound/gameover.mp3");
-gameover_snd.volume = 0.5;
+gameover_snd.volume = 0.50;
 
 
 
 document.addEventListener("DOMContentLoaded", () => {
-  console.log("Hey there and welcome to TetrisPuzzle");
   // Initialize canvas and display splash
   var canvasEl = document.getElementById("canvas");
   canvasEl.width = 750;
@@ -723,16 +722,16 @@ document.addEventListener("DOMContentLoaded", () => {
     if (e.offsetY > 550 && e.offsetY < 700) {
       if (e.offsetX > 40 && e.offsetX < 175) {
         game.pieceAction(0);
-        // console.log(game.pieces);
+
       } else if (e.offsetX > 225 && e.offsetX < 360) {
         game.pieceAction(1);
-        // console.log(game.pieces);
+
       } else if (e.offsetX > 415 && e.offsetX < 550) {
         game.pieceAction(2);
-        // console.log(game.pieces);
+
       } else if (e.offsetX > 600 && e.offsetX < 740) {
         game.pieceAction(3);
-        // console.log(game.pieces);
+
       }
 
     }
@@ -746,10 +745,7 @@ document.addEventListener("DOMContentLoaded", () => {
       let y = Math.floor((e.offsetY - 75)/45);
       game.placePiece([x,y]);
 
-    } else {
-      console.log("please select a piece!");
     }
-
   }
 
   }, false);
